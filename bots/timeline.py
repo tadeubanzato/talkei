@@ -65,7 +65,7 @@ class MyStreamListener(tweepy.StreamListener):
                 #print (Fore. RED + "RETWEETING: " + tweet.retweet())
             except Exception as e:
                 #logger.error("Error on fav and retweet", exc_info=True)
-                return
+                #return
 
     def on_error(self, status):
         print("Error detected")
