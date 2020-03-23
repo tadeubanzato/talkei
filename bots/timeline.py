@@ -60,6 +60,7 @@ class MyStreamListener(tweepy.StreamListener):
                 if not tweet.user.following:
                         tweet.user.follow()
                         time.sleep(10)
+                        return
 
                 #print (Fore. RED + "RETWEETING: " + tweet.retweet())
             except Exception as e:
