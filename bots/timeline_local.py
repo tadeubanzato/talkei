@@ -54,8 +54,8 @@ class MyStreamListener(tweepy.StreamListener):
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
             try:
-                tweetX = tweet.retweet()
-                tweet.retweet(tweetX +  " isso ai ", tweet.user)
+                tweet.retweet()
+                #tweet.retweet(tweetX +  " isso ai ", tweet.user)
                 time.sleep(30)
 
                 if not tweet.user.following:
