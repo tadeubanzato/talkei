@@ -59,13 +59,14 @@ class MyStreamListener(tweepy.StreamListener):
 
                 if not tweet.user.following:
                         tweet.user.follow()
-                        time.sleep(10)
+                        time.sleep(30)
                         return
 
                 #print (Fore. RED + "RETWEETING: " + tweet.retweet())
             except Exception as e:
                 #logger.error("Error on fav and retweet", exc_info=True)
-                #return
+                time.sleep(10)
+                return
 
     def on_error(self, status):
         print("Error detected")
