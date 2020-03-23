@@ -29,7 +29,6 @@ logger = logging.getLogger()
 
 # STREAM TIMELINE TWEETS amd RETWEETS
 class MyStreamListener(tweepy.StreamListener):
-    time.sleep(30)
     def __init__(self, api):
         self.api = api
         self.me = api.me()
