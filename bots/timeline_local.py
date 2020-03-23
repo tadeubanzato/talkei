@@ -22,12 +22,6 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
 # # PRINT TIMELINE TWEETS
 # timeline = api.home_timeline()
 # for tweet in timeline:
@@ -52,7 +46,7 @@ class MyStreamListener(tweepy.StreamListener):
             # Mark it as Liked, since we have not done it yet
             try:
                 tweet.favorite()
-                time.sleep(60)
+                time.sleep(30)
             except Exception as e:
                 #logger.error("Error on fav", exc_info=True)
                 return
@@ -61,15 +55,13 @@ class MyStreamListener(tweepy.StreamListener):
             # Retweet, since we have not retweeted it yet
             if not tweet.user.following:
                     tweet.user.follow()
-                    time.sleep(80)
-
+                    time.sleep(30)
             try:
                 tweetX = tweet.retweet()
                 tweet.retweet(tweetX +  " isso ai ", tweet.user)
                 time.sleep(30)
-                print (Fore. RED + "RETWEETING: " + tweet.retweet())
-                print(Style.RESET_ALL)
-            except Exception as e:      
+                #print (Fore. RED + "RETWEETING: " + tweet.retweet())
+            except Exception as e:
                 #logger.error("Error on fav and retweet", exc_info=True)
                 return
 
