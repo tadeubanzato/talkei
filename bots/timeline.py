@@ -53,7 +53,7 @@ class MyStreamListener(tweepy.StreamListener):
                     print("User followed: " + tweet.user)
                     tweet.user.follow()
                     time.sleep(15 * 60)
-                    return
+                    #return
 
             except Exception as e:
                 logger.error("Error on fav and retweet") #, exc_info=True
