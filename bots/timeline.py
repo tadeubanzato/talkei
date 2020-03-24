@@ -51,7 +51,7 @@ class MyStreamListener(tweepy.StreamListener):
                 time.sleep(30)
                 if not tweet.user.following:
                     tweet.user.follow()
-                    time.sleep(30)
+                    time.sleep(15 * 60)
                     return
 
             except Exception as e:
@@ -62,16 +62,16 @@ class MyStreamListener(tweepy.StreamListener):
 
             # but you can of course handle it in any way you want.
 
-            def limit_handled(cursor):
-                while True:
-                    try:
-                        yield cursor.next()
-                    except tweepy.RateLimitError:
-                        time.sleep(15 * 60)
+        def limit_handled(cursor):
+            while True:
+                try:
+                    yield cursor.next()
+                except tweepy.RateLimitError:
+                    time.sleep(15 * 60)
 
-            for follower in limit_handled(tweepy.Cursor(api.followers).items()):
-                if follower.friends_count < 300:
-                    print(follower.screen_name)
+            # for follower in limit_handled(tweepy.Cursor(api.followers).items()):
+            #     if follower.friends_count < 300:
+            #         print(follower.screen_name)
 
                 def on_error(self, status):
                     print("Error detected")
