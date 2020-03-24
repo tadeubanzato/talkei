@@ -48,8 +48,9 @@ class MyStreamListener(tweepy.StreamListener):
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
+                ret = tweet.retweet()
                 time.sleep(30)
-                print("Retweet: " + tweet.retweet())
+                print("\n\n\n Retweeted \n\n\n")
                 if not tweet.user.following:
                     print("User followed: " + tweet.user)
                     tweet.user.follow()
