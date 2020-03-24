@@ -17,6 +17,10 @@ client = gspread.authorize(creds)
 # talkeiMessage = sheet.get_all_records()
 # print(talkeiMessage)
 
+#max_rows = len(worksheet.get_all_values())
+#this is a list of list of all data and the length is equal to the number of rows including header row if it exists in data set
+
+
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
