@@ -11,7 +11,7 @@ import pprint
 import random
 from random import *
 
-logger = logging.getLogger()
+#logger = logging.getLogger()
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
