@@ -19,9 +19,9 @@ client = gspread.authorize(creds)
 
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
-talkeiMessage = sheet.cell(1, 1).value
+talkeiMessage = sheet.cell(1, 3).value
 print(talkeiMessage)
-#pp.pprint(talkeiMessage)
+
 
 # #to get all the values inside the file
 # sheet.get_all_values()
@@ -31,6 +31,7 @@ print(talkeiMessage)
 # sheet.col_values(16)
 # #to extract a particular cell value
 # sheet.cell(1, 1).value
+# pp.pprint(talkeiMessage)
 
 # logger = logging.getLogger()
 #
