@@ -29,6 +29,7 @@ fillrows = len(sheet.get_all_values()) # Get total number of rolls with data add
 #talkeiMessage = sheet.cell(3, 1).value
 #randNumber = (random.randrange(fillrows))
 #print ("Total rows: " + randNumber)
+fillrows = 200
 x = randint(1, fillrows)
 print (x)
 #x = randint(1, randNumber)
