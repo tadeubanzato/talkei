@@ -19,8 +19,8 @@ client = gspread.authorize(creds)
 
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
-employees = sheet.get_all_records()
-pp.pprint(employees)
+talkeiMessage = sheet.get_all_records()
+pp.pprint(talkeiMessage)
 
 # logger = logging.getLogger()
 #
