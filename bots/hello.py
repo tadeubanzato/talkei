@@ -2,7 +2,7 @@
 # git pull origin master
 import json
 import tweepy
-import logging
+#import logging
 import os
 import time
 import gspread
@@ -23,8 +23,8 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
+# logging.basicConfig(level=logging.INFO)
+# logger = logging.getLogger()
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
@@ -43,9 +43,9 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-#print(talkeiMessage)
+print(talkeiMessage)
 
-api.update_status(talkeiMessage)
+#api.update_status(talkeiMessage)
 
 
 # #to get all the values inside the file
