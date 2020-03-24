@@ -7,9 +7,10 @@ import os
 import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import pprint
+#import pprint
 import random
 from random import *
+import emoji
 
 #logger = logging.getLogger()
 
@@ -43,7 +44,7 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-print(talkeiMessage + "\U+1F637")
+print(talkeiMessage + emoji.emojize('Python is :thumbs_up:'))
 #api.update_status(talkeiMessage)
 
 
