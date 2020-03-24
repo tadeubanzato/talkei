@@ -8,6 +8,7 @@ import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pprint
+import random
 from random import *
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
