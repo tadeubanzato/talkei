@@ -21,11 +21,6 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-# # PRINT TIMELINE TWEETS
-# timeline = api.home_timeline()
-# for tweet in timeline:
-#     print (tweet.user.name + ' said ' + tweet.text)
-
 # STREAM TIMELINE TWEETS amd RETWEETS
 class MyStreamListener(tweepy.StreamListener):
     def __init__(self, api):
@@ -34,7 +29,7 @@ class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print (tweet.user.name + " said: " + tweet.text)
-        #tweet.favorite()
+
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
@@ -55,11 +50,10 @@ class MyStreamListener(tweepy.StreamListener):
                 tweet.retweet()
                 #tweet.retweet(tweetX +  " isso ai ", tweet.user)
                 time.sleep(30)
-
                 if not tweet.user.following:
-                        tweet.user.follow()
-                        time.sleep(30)
-                        return
+                    tweet.user.follow()
+                    time.sleep(30)
+                    return
 
                 #print (Fore. RED + "RETWEETING: " + tweet.retweet())
             except Exception as e:
@@ -70,17 +64,6 @@ class MyStreamListener(tweepy.StreamListener):
     def on_error(self, status):
         print("Error detected")
 
-    # def on_status(self, status):
-    #     if hasattr(status, "retweeted_status"):  # Check if Retweet
-    #         try:
-    #             print(status.retweeted_status.extended_tweet["full_text"])
-    #         except AttributeError:
-    #             print(status.retweeted_status.text)
-    #     else:
-    #         try:
-    #             print(status.extended_tweet["full_text"])
-    #         except AttributeError:
-    #             print(status.text)
 
 tweets_listener = MyStreamListener(api)
 stream = tweepy.Stream(api.auth, tweets_listener)
