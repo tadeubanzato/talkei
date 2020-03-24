@@ -39,7 +39,6 @@ class MyStreamListener(tweepy.StreamListener):
             # Mark it as Liked, since we have not done it yet
             try:
                 tweet.favorite()
-                time.sleep(30)
             except Exception as e:
                 #logger.error("Error on fav", exc_info=True)
                 return
@@ -48,7 +47,6 @@ class MyStreamListener(tweepy.StreamListener):
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
-                ret = tweet.retweet()
                 time.sleep(30)
                 print("\n\n\n Retweeted \n\n\n")
                 if not tweet.user.following:
