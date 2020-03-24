@@ -25,6 +25,8 @@ sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
 print(talkeiMessage)
+filrows = len(sheet.get_all_values())
+print (filrows)
 
 print ('Total rows:', sheet.row_count) # worksheet rows including empty rows
 max_cols = 0
