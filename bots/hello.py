@@ -23,10 +23,13 @@ client = gspread.authorize(creds)
 
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
-talkeiMessage = sheet.cell(3, 1).value
+
+fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
+#talkeiMessage = sheet.cell(3, 1).value
+
+talkeiMessage = sheet.cell(random.randrange(fillrows, 1)
 print(talkeiMessage)
-filrows = len(sheet.get_all_values())
-print (filrows)
+
 
 
 # #to get all the values inside the file
