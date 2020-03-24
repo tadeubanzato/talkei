@@ -10,7 +10,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pprint
 import random
 from random import *
-import emoji
 
 #logger = logging.getLogger()
 
