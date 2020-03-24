@@ -20,11 +20,18 @@ client = gspread.authorize(creds)
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
-
-max_rows = lens(sheet.get_all_values())
-print ('Filled rows: ' + max_rows +'\n')
-print ('Total rows:' + sheet.row_count + "\n")
 print(talkeiMessage)
+
+print ('Total rows:' + sheet.row_count + "\n") # worksheet rows including empty rows
+max_cols = 0
+for non_empty_row_num in range(1,sheet.row_count): # step thru non-empty rows
+    cols_in_row = len(sheet.row_values(non_empty_row_num)) # number of cols in this non-empty row
+    # print (non_empty_row_num,cols_in_row)
+    if cols_in_row > max_cols: max_cols = cols_in_row
+    if cols_in_row == 0:  # only process if not empty
+        print (non_empty_row_num,max_cols)
+        break # stop getting new rows at first empty row
+    print (len(sheet.get_all_values()))  # just the non-empty row count
 
 
 # #to get all the values inside the file
