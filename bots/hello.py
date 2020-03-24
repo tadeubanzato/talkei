@@ -20,6 +20,7 @@ client = gspread.authorize(creds)
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
+print ('Total roow:', sheet.row_count)
 print(talkeiMessage)
 
 
