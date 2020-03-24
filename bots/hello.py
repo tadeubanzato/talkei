@@ -12,25 +12,14 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
 
+# sheet = client.open('Talkei_Messages').sheet1
+# talkeiMessage = sheet.get_all_records()
+# print(talkeiMessage)
+
 sheet = client.open('Talkei_Messages').sheet1
-
-talkeiMessage = sheet.get_all_records()
-#print(talkeiMessage)
-
 pp = pprint.PrettyPrinter()
 employees = sheet.get_all_records()
 pp.pprint(employees)
-
-
-#to get all the values inside the file
-sheet.get_all_values()
-#to get exact row values in a second row (Since 1st row is the header)
-sheet.row_values(2)
-#to get all the column values in the column 'place'
-sheet.col_values(16)
-#to extract a particular cell value
-sheet.cell(1, 1).value
-
 
 # logger = logging.getLogger()
 #
