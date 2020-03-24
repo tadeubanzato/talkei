@@ -27,7 +27,7 @@ pp = pprint.PrettyPrinter()
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
 
-talkeiMessage = sheet.cell(random.randrange(fillrows, 1)
+talkeiMessage = sheet.cell(random.randrange(fillrows), 1)
 print(talkeiMessage)
 
 
