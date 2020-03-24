@@ -70,17 +70,17 @@ class MyStreamListener(tweepy.StreamListener):
     def on_error(self, status):
         print("Error detected")
 
-    def on_status(self, status):
-        if hasattr(status, "retweeted_status"):  # Check if Retweet
-            try:
-                print(status.retweeted_status.extended_tweet["full_text"])
-            except AttributeError:
-                print(status.retweeted_status.text)
-        else:
-            try:
-                print(status.extended_tweet["full_text"])
-            except AttributeError:
-                print(status.text)
+    # def on_status(self, status):
+    #     if hasattr(status, "retweeted_status"):  # Check if Retweet
+    #         try:
+    #             print(status.retweeted_status.extended_tweet["full_text"])
+    #         except AttributeError:
+    #             print(status.retweeted_status.text)
+    #     else:
+    #         try:
+    #             print(status.extended_tweet["full_text"])
+    #         except AttributeError:
+    #             print(status.text)
 
 tweets_listener = MyStreamListener(api)
 stream = tweepy.Stream(api.auth, tweets_listener)
