@@ -41,7 +41,7 @@ class MyStreamListener(tweepy.StreamListener):
                 tweet.favorite()
                 time.sleep(30)
             except Exception as e:
-                logger.error("Error on fav", exc_info=True)
+                #logger.error("Error on fav", exc_info=True)
                 return
 
         if not tweet.retweeted:
@@ -55,12 +55,26 @@ class MyStreamListener(tweepy.StreamListener):
                     return
 
             except Exception as e:
-                logger.error("Error on fav and retweet", exc_info=True)
+                logger.error("Error on fav and retweet") #, exc_info=True
                 time.sleep(20)
                 #return
+                # In this example, the handler is time.sleep(15 * 60),
 
-    def on_error(self, status):
-        print("Error detected")
+            # but you can of course handle it in any way you want.
+
+            def limit_handled(cursor):
+                while True:
+                    try:
+                        yield cursor.next()
+                    except tweepy.RateLimitError:
+                        time.sleep(15 * 60)
+
+            for follower in limit_handled(tweepy.Cursor(api.followers).items()):
+                if follower.friends_count < 300:
+                    print(follower.screen_name)
+
+                def on_error(self, status):
+                    print("Error detected")
 
 
 tweets_listener = MyStreamListener(api)
