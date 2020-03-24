@@ -43,9 +43,9 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-print(talkeiMessage)
+#print(talkeiMessage)
 
-# api.update_status(talkeiMessage)
+api.update_status(talkeiMessage)
 
 
 # #to get all the values inside the file
