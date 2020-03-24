@@ -7,6 +7,7 @@ import os
 import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import pprint
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
