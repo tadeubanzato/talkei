@@ -41,25 +41,23 @@ class MyStreamListener(tweepy.StreamListener):
                 tweet.favorite()
                 time.sleep(30)
             except Exception as e:
-                #logger.error("Error on fav", exc_info=True)
+                logger.error("Error on fav", exc_info=True)
                 return
 
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
-                #tweet.retweet(tweetX +  " isso ai ", tweet.user)
                 time.sleep(30)
                 if not tweet.user.following:
                     tweet.user.follow()
                     time.sleep(30)
                     return
 
-                #print (Fore. RED + "RETWEETING: " + tweet.retweet())
             except Exception as e:
-                #logger.error("Error on fav and retweet", exc_info=True)
-                time.sleep(10)
-                return
+                logger.error("Error on fav and retweet", exc_info=True)
+                time.sleep(20)
+                #return
 
     def on_error(self, status):
         print("Error detected")
