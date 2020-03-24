@@ -11,6 +11,21 @@ import pprint
 import random
 from random import *
 
+logger = logging.getLogger()
+
+# Authenticate to Twitter
+auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
+    "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
+auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
+    "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
+
+# Create API object
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger()
+
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
@@ -19,20 +34,13 @@ client = gspread.authorize(creds)
 # talkeiMessage = sheet.get_all_records()
 # print(talkeiMessage)
 
-#max_rows = len(worksheet.get_all_values())
-#this is a list of list of all data and the length is equal to the number of rows including header row if it exists in data set
-
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
-#randNumber = (random.randrange(fillrows))
-#print ("Total rows: " + randNumber)
-fillrows = 200
 x = randint(1, fillrows)
-print (x)
-#x = randint(1, randNumber)
+#print (x)
 
 talkeiMessage = sheet.cell(x,1).value
 print(talkeiMessage)
