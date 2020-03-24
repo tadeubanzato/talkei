@@ -21,17 +21,17 @@ client = gspread.authorize(creds)
 
 #max_rows = len(worksheet.get_all_values())
 #this is a list of list of all data and the length is equal to the number of rows including header row if it exists in data set
-x = randint(1, 100)
-print (x)
 
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
 
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
-randNumber = (random.randrange(fillrows))
-print ("Total rows: " + randNumber)
+#randNumber = (random.randrange(fillrows))
+#print ("Total rows: " + randNumber)
 x = randint(1, randNumber)
+print (x)
+#x = randint(1, randNumber)
 
 talkeiMessage = sheet.cell(x,1).value
 print(talkeiMessage)
