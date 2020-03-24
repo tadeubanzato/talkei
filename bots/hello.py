@@ -43,7 +43,7 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-print(talkeiMessage + "U+1F637")
+print(talkeiMessage + "\U+1F637")
 #api.update_status(talkeiMessage)
 
 
