@@ -19,7 +19,7 @@ client = gspread.authorize(creds)
 
 sheet = client.open('Talkei_Messages').sheet1
 pp = pprint.PrettyPrinter()
-talkeiMessage = sheet.col_values(16)
+talkeiMessage = sheet.col_values(2)
 pp.pprint(talkeiMessage)
 
 # #to get all the values inside the file
