@@ -56,8 +56,8 @@ class MyStreamListener(tweepy.StreamListener):
 
             except Exception as e:
                 logger.error("Error on fav and retweet") #, exc_info=True
-                time.sleep(20)
-                #return
+                #time.sleep(20)
+                return
                 # In this example, the handler is time.sleep(15 * 60),
 
             # but you can of course handle it in any way you want.
@@ -79,7 +79,7 @@ class MyStreamListener(tweepy.StreamListener):
 
 tweets_listener = MyStreamListener(api)
 stream = tweepy.Stream(api.auth, tweets_listener)
-stream.filter(track=["Bolsonazi", "biroliro", "imbecil", "#BolsonaroGenocida"], languages=["pt"])
+stream.filter(track=["Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida"], languages=["pt"])
 
 
 # # FOLLOW FOLLOWERS
