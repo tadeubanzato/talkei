@@ -26,7 +26,7 @@ pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
 print(talkeiMessage)
 filrows = len(sheet.get_all_values())
-print ('Total rows:', filrows)
+print (filrows)
 
 
 # #to get all the values inside the file
