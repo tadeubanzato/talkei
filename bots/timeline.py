@@ -41,7 +41,7 @@ class MyStreamListener(tweepy.StreamListener):
                 tweet.favorite()
             except Exception as e:
                 #logger.error("Error on fav", exc_info=True)
-                return
+                #return
 
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
