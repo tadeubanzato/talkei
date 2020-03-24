@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
+# git pull origin master
 import json
 import tweepy
 import logging
-#from config import create_api
 import os
 import time
-#from colorama import Fore, Back, Style
 
 logger = logging.getLogger()
 
