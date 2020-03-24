@@ -26,7 +26,7 @@ pp = pprint.PrettyPrinter()
 talkeiMessage = sheet.cell(3, 1).value
 print(talkeiMessage)
 
-print ('Total rows:' + sheet.row_count + "\n") # worksheet rows including empty rows
+print ('Total rows:', sheet.row_count) # worksheet rows including empty rows
 max_cols = 0
 for non_empty_row_num in range(1,sheet.row_count): # step thru non-empty rows
     cols_in_row = len(sheet.row_values(non_empty_row_num)) # number of cols in this non-empty row
