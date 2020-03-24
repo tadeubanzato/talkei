@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "talkei-272115",
+  "private_key_id": "0c766b3145096b69ce60dae68cd222317c5f4a34",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTpoVi72WbCZc8\n06EWwwYCvKizvulgJ0n/VT+y1kbsy9SrWgLqy9xjz/bFnTSnBfUJSqJHPwCMBocq\nhIYsdieWdtkhz+98QNXDOMGsREuN524MN7OQJcjG5xmAWDJ0QvGAQxNPhG54X+ok\n8AV7ujZ/Hcj2dNUPosEw1eeIUPwqzd94V+VZViIlhMHB9EuYSYAHR9kP2Y7523BB\n+fwDrbySWIGkWHikVroOVAVzBg6c5saZICPzrR57nwlovJ9VO/kc3wxl9CHeC2Q9\nbhXDHQ9Nhq/sS5m27rxVXvQZ7IpAIEzR0cS+cImuz82qFXF7YF2yIw5PVkRaN4fq\nWLVJAwULAgMBAAECggEAGF3Oc3JuNygmgjk3DYDMW1pO7cqn4YsEaOHuoG8s4Swi\nQsvtFAz+RXt2xI9xtVzpNfWisyMctAI4Y3u4WrwLmLX8D3l578sjEQOiwGtoa2De\neYecI5dGAygt9mmw/VOLrCGMwpXThgY81Z3Qc8sfZQkPztfqg49QQIgPzNDOBztQ\npygTosVx14gR7IxH5jcR9iN7/vt5v3bG9jWerkb6tUfHc4EvNe+FoIN9IsABz+t6\nLoOWrIA1Hnnrcbpuikb1Y0RfFPLZfM96x6li+z2njWhYY9i6l+6hBLmP40B5K2XH\n1OdFTgKAXW/z4oW2nw0/c/5ToCDO8fU6Nk3D7k6doQKBgQD6QYB7Ar1zhnAV5Aib\ngiNWcfvOw5lpQHECt5HCPoDGYlwOC735rJcZM71JX8GWJfltWgUsFi7bB17kKV9k\nkV8W1Yi1JhmkkYnyV32kwtE+0IvPN3/IZU3mdRMkPyd40YFjC+P+auTrxlSXcxg+\nRfG9a0EcRb8UhQpk8gOennZskQKBgQDYgiy4yf0gl56DMrRD74EN47GNsSREKUxa\nCBAugk/GKwQPmHI7I1t7h6kaQZOkvtCBP/7M1tjVvGr3sRnWAOtiHkpaDgNTeZly\neF/YS8St4LP4sCTM62Pu54DkJp/d5a6UuNQVNBlc1Tt7E3puDQa3TpeVmO3XSLOG\nzqra4ShV2wKBgQD3YG5vqnq5yufbS8mSZyclWZEvhzyLxU6w/+LOn1hOQoZ6v/Kv\n7oKCQBnZgRVspecUyEqalOcGThfn9Fm+oNDdUoFLh/kLK26wJvolNwr+S8oYMOVY\no4NIzuv4BZGwJXEABo3+PY5C3o9aEkShsiRPOMlo+Cz1TLnEpVMcpcmscQKBgQDN\n6skUG3A3Hl0xVPkkH9dzWVqWc6MVfN3URxT01xV+WY0sNAZ4/oDUtUr84N/GcYEn\nXLE/Kxvh9Kkb2QHEiu1UTZDTo75AF0f9GkW2FyIBadRhs03c5AgQwXfSBnZH+loX\nss5rODjjFR7USMtJffQkRYhgTKnw9oFgtpDDSiAtvwKBgER+nlfEV4W0suE5QElp\n7uzkMT9GsXAsG3geccU+fxmIDSs65dRqj+fTlNvizDs8F0+ljb1YYT6+IyDTT0Tl\nIGJ5Md9gdfqqlvFQ0gCkLMgUl35gm2nh55DEs9FrNfSurkJ0FvMGvkchjp+f8y3X\nnry0LMqm2NQQZBehBst7Mt2c\n-----END PRIVATE KEY-----\n",
+  "client_email": "talkei@talkei-272115.iam.gserviceaccount.com",
+  "client_id": "107905744800018286743",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/talkei%40talkei-272115.iam.gserviceaccount.com"
+}
