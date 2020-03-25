@@ -6,8 +6,8 @@ import logging
 import os
 import time
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
+#logging.basicConfig(level=logging.INFO)
+#logger = logging.getLogger()
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
