@@ -18,8 +18,9 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
-count = 0
+
 class FavRetweetListener(tweepy.StreamListener):
+    count = 0
     def __init__(self, api):
         self.api = api
         self.me = api.me()
