@@ -44,7 +44,7 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-print(talkeiMessage + emoji.emojize('Python is :thumbs_up:'))
+print(talkeiMessage + emoji.emojize(':mask:'))
 #api.update_status(talkeiMessage)
 
 
