@@ -11,6 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import random
 from random import *
 import emoji
+import requests
 
 #logger = logging.getLogger()
 
@@ -40,10 +41,14 @@ sheet = client.open('Talkei_Messages').sheet1
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
 x = randint(1, fillrows)
-print (sheet.cell(x,1).value)
 
 talkeiMessage = sheet.cell(x,1).value
 api.update_status(talkeiMessage)
+
+# Webhook will receive IP address from the pi
+report["value1"] = (sheet.cell(x,1).value)
+requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
+
 
 
 # #to get all the values inside the file
