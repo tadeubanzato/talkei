@@ -6,9 +6,6 @@ import logging
 import os
 import time
 
-#logging.basicConfig(level=logging.INFO)
-#logger = logging.getLogger()
-
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
     "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
@@ -19,7 +16,7 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-logging.basicConfig(level=logging.INFO)
+#logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
