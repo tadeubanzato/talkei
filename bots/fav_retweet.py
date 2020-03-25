@@ -44,11 +44,18 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-        if not tweet.favorited:
+        if not tweet.favorited or not tweepy.TweepError:
             # Mark it as Liked, since we have not done it yet
             try:
                 tweet.favorite()
             except Exception as e:
+                t = (15 * 30)
+                while t:
+                    mins, secs = divmod(t, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print(timer)
+                    time.sleep(1)
+                    t -= 1
                 logger.error("Error on fav", exc_info=True)
 
         if not tweet.retweeted:
@@ -62,7 +69,7 @@ class FavRetweetListener(tweepy.StreamListener):
                     while t:
                         mins, secs = divmod(t, 60)
                         timer = '{:02d}:{:02d}'.format(mins, secs)
-                        print(timer, "\r")
+                        print(timer)
                         time.sleep(1)
                         t -= 1
                     print('Restart')
