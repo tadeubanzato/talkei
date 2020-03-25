@@ -19,6 +19,7 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
+    # # LIMIT HANDLER STARTS HERE
     def limit_handled(cursor):
         while True:
             try:
@@ -30,20 +31,12 @@ class FavRetweetListener(tweepy.StreamListener):
         self.api = api
         self.me = api.me()
 
-    # #LIMIT HANDLER STARTS HERE
-    # def limit_handled(cursor):
-    #     while True:
-    #         try:
-    #             yield cursor.next()
-    #         except tweepy.RateLimitError:
-    #             time.sleep(15 * 60)
-
     def on_error(self, status):
         logger.error(status)
 
     def on_status(self, tweet):
         print("Processing tweet id ", tweet.id)
-        #logger.info("Processing tweet id ", tweet.id)
+
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
@@ -58,8 +51,8 @@ class FavRetweetListener(tweepy.StreamListener):
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
-                #tweet.user.follow()
-                #print("Following user: ",tweet.user)
+                tweet.user.follow()
+                print("Following user: ",tweet.user)
                 return
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
