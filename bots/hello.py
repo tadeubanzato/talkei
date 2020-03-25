@@ -41,7 +41,7 @@ sheet = client.open('Talkei_Messages').sheet1
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
 x = randint(1, fillrows)
-#print (x)
+print (x)
 
 talkeiMessage = sheet.cell(x,1).value
 #print(talkeiMessage + emoji.emojize(' :hankey:'))
