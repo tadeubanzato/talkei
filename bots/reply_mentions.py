@@ -16,8 +16,7 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-#logging.basicConfig(level=logging.INFO)
-logging.basicConfig(format=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
@@ -35,7 +34,7 @@ def check_mentions(api, keywords, since_id):
                 tweet.user.follow()
 
             api.update_status(
-                status="Please reach us via DM",
+                status="Esse presidente é um bossal #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
                 in_reply_to_status_id=tweet.id,
             )
     return new_since_id
