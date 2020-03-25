@@ -14,11 +14,11 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 # Create API object
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
-pprint("TEST run 1")
+print("TEST run 1")
 
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
-pprint("TEST run 2")
+print("TEST run 2")
 
 class FavRetweetListener(tweepy.StreamListener):
     # # LIMIT HANDLER STARTS HERE
