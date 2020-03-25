@@ -42,6 +42,9 @@ class FavRetweetListener(tweepy.StreamListener):
                 time.sleep(30)
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
+            except tweepy.TweepError:
+                time.sleep(60 * 15)
+                item = next(items)
 
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
@@ -76,19 +79,5 @@ def main(keywords):
     stream.filter(track=keywords, languages=["pt"])
 
 if __name__ == "__main__":
-    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente"])
+    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente", "biroliro", "bolsonaro imbecil"])
     time.sleep(15)
-#all tags
-#"Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"
-
-
-# c = tweepy.Cursor()
-# while True:
-#     try:
-#         tweet = c.next()
-#         # Insert into db
-#     except tweepy.TweepError:
-#         time.sleep(60 * 15)
-#         continue
-#     except StopIteration:
-#         break
