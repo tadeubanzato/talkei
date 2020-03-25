@@ -17,7 +17,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
 #logging.basicConfig(level=logging.INFO)
-logging.basicConfig(format=FORMAT)
+logging.basicConfig(format=logging.INFO)
 logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
