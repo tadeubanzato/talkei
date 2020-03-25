@@ -94,7 +94,7 @@ def main(keywords):
     stream.filter(track=keywords, languages=["pt"])
 
 if __name__ == "__main__":
-    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi"])
+    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente"])
     time.sleep(15)
 #all tags
 #"Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"
