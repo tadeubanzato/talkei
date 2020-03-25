@@ -75,19 +75,24 @@ class FavRetweetListener(tweepy.StreamListener):
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
 
+    def limit_handled(cursor):
+        while True:
+            try:
+                yield cursor.next()
+            except tweepy.RateLimitError:
+                time.sleep(15 * 60)
+
+         for follower in limit_handled(tweepy.Cursor(api.followers).items()):
+            if follower.friends_count < 300:
+                print(follower.screen_name)
+
+
     def on_error(self, status):
         logger.error(status)
 
 
 def main(keywords):
     #api = create_api()
-    def limit_handled(cursor):
-        while True:
-            try:
-                yield cursor.next()
-            except tweepy.RateLimitError:
-                print("Waiting...")
-                time.sleep(15 * 60)
 
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
