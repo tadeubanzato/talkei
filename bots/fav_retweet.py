@@ -20,6 +20,7 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
+    stream.filter(track=[t], stall_warnings=True)
     # # LIMIT HANDLER STARTS HERE
     def limit_handled(cursor):
         print("limit handler")
