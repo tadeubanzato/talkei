@@ -80,7 +80,13 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 yield cursor.next()
             except tweepy.RateLimitError:
-                time.sleep(15 * 60)
+                t = (15 * 60)
+                while t:
+                    mins, secs = divmod(t, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print(timer)
+                    time.sleep(1)
+                    t -= 1
 
     for follower in limit_handled(tweepy.Cursor(api.followers).items()):
         if follower.friends_count < 300:
