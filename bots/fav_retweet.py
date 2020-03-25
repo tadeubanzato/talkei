@@ -85,10 +85,23 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     #api = create_api()
-
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
+
+def limit_handled(cursor):
+    while True:
+        try:
+            yield cursor.next()
+        except tweepy.RateLimitError:
+            print('ENTRANDO ESTADO DE ESPERA - API LIMIT')
+            t = (15 * 60)
+            while t:
+                mins, secs = divmod(t, 60)
+                timer = '{:02d}:{:02d}'.format(mins, secs)
+                print(timer)
+                time.sleep(1)
+                t -= 1
 
 if __name__ == "__main__":
     main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente"])
