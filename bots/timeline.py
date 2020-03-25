@@ -69,8 +69,8 @@ class MyStreamListener(tweepy.StreamListener):
                 except tweepy.RateLimitError:
                     time.sleep(15 * 60)
 
-             for follower in limit_handled(tweepy.Cursor(api.followers).items()):
-                if follower.friends_count < 300:
+             #for follower in limit_handled(tweepy.Cursor(api.followers).items()):
+                #if follower.friends_count < 300:
                     #print(follower.screen_name)
 
                 def on_error(self, status):
