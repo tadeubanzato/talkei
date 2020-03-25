@@ -14,7 +14,7 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-logging.basicConfig(level=logging.CRITICAL)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
@@ -23,7 +23,7 @@ class FavRetweetListener(tweepy.StreamListener):
         self.me = api.me()
 
     def on_status(self, tweet):
-        logger.critical("Processing tweet id ", tweet.id)
+        print("Processing tweet id ", tweet.id)
         #logger.info("Processing tweet id ", tweet.id)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
