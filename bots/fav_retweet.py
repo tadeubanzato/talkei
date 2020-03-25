@@ -56,7 +56,9 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 #tweet.user.follow()
-                print("Following user: ",tweet.user)
+                if not tweet.user.following:
+                    tweet.user.follow()
+                    time.sleep(15 * 30)
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
@@ -72,6 +74,7 @@ def main(keywords):
             try:
                 yield cursor.next()
             except tweepy.RateLimitError:
+                print("Waiting...")
                 time.sleep(15 * 60)
 
     tweets_listener = FavRetweetListener(api)
