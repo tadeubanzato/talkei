@@ -20,8 +20,16 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-for follower in tweepy.Cursor(api.followers).items():
-    follower.follow()
+def limit_handled(cursor):
+    while True:
+        try:
+            yield cursor.next()
+        except tweepy.RateLimitError:
+            time.sleep(15 * 60)
+
+for follower in limit_handled(tweepy.Cursor(api.followers).items()):
+    if follower.friends_count < 50:
+        print(follower.screen_name)
 #
 #
 # users = tweepy.Cursor(api.followers, screen_name=accountvar).items()
