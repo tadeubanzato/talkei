@@ -49,7 +49,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.favorite()
             except Exception as e:
-                t = (15 * 30)
+                t = (10)
                 while t:
                     mins, secs = divmod(t, 60)
                     timer = '{:02d}:{:02d}'.format(mins, secs)
@@ -65,7 +65,7 @@ class FavRetweetListener(tweepy.StreamListener):
                 #tweet.user.follow()
                 if not tweet.user.following:
                     tweet.user.follow()
-                    t = (15 * 30)
+                    t = (15 * 60)
                     while t:
                         mins, secs = divmod(t, 60)
                         timer = '{:02d}:{:02d}'.format(mins, secs)
