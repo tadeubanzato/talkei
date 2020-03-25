@@ -44,8 +44,8 @@ x = randint(1, fillrows)
 #print (x)
 
 talkeiMessage = sheet.cell(x,1).value
-print(talkeiMessage + emoji.emojize(' :hankey:'))
-#api.update_status(talkeiMessage)
+#print(talkeiMessage + emoji.emojize(' :hankey:'))
+api.update_status(talkeiMessage + emoji.emojize(' :hankey:'))
 
 
 # #to get all the values inside the file
