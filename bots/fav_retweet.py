@@ -43,6 +43,14 @@ class FavRetweetListener(tweepy.StreamListener):
                 #print("Following user: ",tweet.user)
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
+                
+    #LIMIT HANDLER STARTS HERE
+    def limit_handled(cursor):
+        while True:
+            try:
+                yield cursor.next()
+            except tweepy.RateLimitError:
+                time.sleep(15 * 60)
 
     def on_error(self, status):
         logger.error(status)
