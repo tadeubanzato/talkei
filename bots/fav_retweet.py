@@ -51,4 +51,4 @@ def main(keywords):
     stream.filter(track=keywords, languages=["pt"])
 
 if __name__ == "__main__":
-    main(["Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"])
+    main(["Python", "Tweepy"])
