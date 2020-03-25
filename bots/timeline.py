@@ -40,7 +40,7 @@ class MyStreamListener(tweepy.StreamListener):
             try:
                 tweet.favorite()
             except Exception as e:
-                logger.exception("Error on fav", exc_info=True)
+                #logger.exception("Error on fav", exc_info=True)
                 time.sleep(15 * 60)
                 return
 
