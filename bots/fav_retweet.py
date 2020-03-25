@@ -37,8 +37,6 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_error(self, status):
         print("ERRROR")
         logger.error(status)
-        time.sleep(15 * 60)
-        return
 
     def on_status(self, tweet):
         print("Processing tweet id ", tweet.id)
@@ -53,17 +51,19 @@ class FavRetweetListener(tweepy.StreamListener):
                 tweet.favorite()
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
+
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
                 tweet.user.follow()
                 print("Following user: ",tweet.user)
-                return
+
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
 
-
+    def on_error(self, status):
+        logger.error(status)
 
 
 def main(keywords):
