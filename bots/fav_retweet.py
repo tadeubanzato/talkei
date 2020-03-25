@@ -38,7 +38,7 @@ class FavRetweetListener(tweepy.StreamListener):
         print("ERRROR")
         logger.error(status)
         time.sleep(15 * 60)
-        continue
+        return
 
     def on_status(self, tweet):
         print("Processing tweet id ", tweet.id)
