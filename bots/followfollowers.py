@@ -20,23 +20,36 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
+users = tweepy.Cursor(api.followers, screen_name=accountvar).items()
 
-# FOLLOW FOLLOWERS
-def follow_followers(api):
-    print("Retrieving and following followers")
-    for follower in tweepy.Cursor(api.followers).items():
-        if not follower.following:
-            print("Following: " + follower.name)
-            follower.follow()
+while True:
+    try:
+        user = next(users)
+    except tweepy.TweepError:
+        time.sleep(60*15)
+        user = next(users)
+    except StopIteration:
+        break
+    print "@" + user.screen_name
 
-def main():
-    #api = create_api()
-    while True:
-        follow_followers(api)
-        # print("Waiting...")
-        # time.sleep(60)
 
+# logging.basicConfig(level=logging.INFO)
+# logger = logging.getLogger()
+#
+# # FOLLOW FOLLOWERS
+# def follow_followers(api):
+#     print("Retrieving and following followers")
+#     for follower in tweepy.Cursor(api.followers).items():
+#         if not follower.following:
+#             print("Following: " + follower.name)
+#             follower.follow()
+#
+# def main():
+#     #api = create_api()
+#     while True:
+#         follow_followers(api)
+#         print("Waiting...")
+#         time.sleep(60)
+#
 # if __name__ == "__main__":
 #     main()
