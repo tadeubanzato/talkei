@@ -52,4 +52,5 @@ def main(keywords):
 
 if __name__ == "__main__":
     main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi"])
+#all tags
 #"Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"
