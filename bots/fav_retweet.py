@@ -28,7 +28,7 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        time.sleep(30)
+        time.sleep(20)
         print("Processing tweet id ", tweet.id)
 
         if tweet.in_reply_to_status_id is not None or \
@@ -68,7 +68,7 @@ class FavRetweetListener(tweepy.StreamListener):
             except tweepy.TweepError:
                 time.sleep(60 * 15)
                 item = next(items)
-                
+
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
 
