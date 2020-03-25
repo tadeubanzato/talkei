@@ -38,14 +38,17 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        if tweepy.TweepError:
-            t = (3)
-            while t:
-                mins, secs = divmod(t, 60)
-                timer = '{:02d}:{:02d}'.format(mins, secs)
-                print(timer)
-                time.sleep(1)
-                t -= 1
+        try:
+            if tweepy.TweepError :
+                t = (3)
+                while t:
+                    mins, secs = divmod(t, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print(timer)
+                    time.sleep(1)
+                    t -= 1
+        except Exception as e:
+
         print("Processing tweet id ", tweet.id)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
