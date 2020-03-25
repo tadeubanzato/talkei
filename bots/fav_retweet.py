@@ -11,8 +11,7 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
 # Create API object
-api = tweepy.API(auth, wait_on_rate_limit=True,
-    wait_on_rate_limit_notify=True)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
