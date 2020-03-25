@@ -28,9 +28,8 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-
         #if tweepy.TweepError :
-        time.sleep(5)
+        time.sleep(10)
         # t = (3)
         # while t:
         #     mins, secs = divmod(t, 60)
