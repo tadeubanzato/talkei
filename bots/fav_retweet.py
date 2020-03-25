@@ -22,13 +22,13 @@ class FavRetweetListener(tweepy.StreamListener):
         self.api = api
         self.me = api.me()
 
-    #LIMIT HANDLER STARTS HERE
-    def limit_handled(cursor):
-        while True:
-            try:
-                yield cursor.next()
-            except tweepy.RateLimitError:
-                time.sleep(15 * 60)
+    # #LIMIT HANDLER STARTS HERE
+    # def limit_handled(cursor):
+    #     while True:
+    #         try:
+    #             yield cursor.next()
+    #         except tweepy.RateLimitError:
+    #             time.sleep(15 * 60)
 
     def on_error(self, status):
         logger.error(status)
@@ -45,6 +45,8 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.favorite()
             except Exception as e:
+                time.sleep(60 * 15)
+                continue
                 logger.error("Error on fav", exc_info=True)
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
@@ -54,7 +56,10 @@ class FavRetweetListener(tweepy.StreamListener):
                 #print("Following user: ",tweet.user)
                 return
             except Exception as e:
+                time.sleep(60 * 15)
+                continue
                 logger.error("Error on fav and retweet", exc_info=True)
+
 
 
 
