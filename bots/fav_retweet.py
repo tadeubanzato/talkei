@@ -35,7 +35,6 @@ class FavRetweetListener(tweepy.StreamListener):
         self.me = api.me()
 
     def on_error(self, status):
-        print("ERRROR")
         logger.error(status)
 
     def on_status(self, tweet):
@@ -68,6 +67,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     #api = create_api()
+    time.sleep(15 * 60)
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
