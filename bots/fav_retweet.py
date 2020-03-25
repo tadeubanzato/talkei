@@ -20,23 +20,25 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
-    stream.filter(track=[t], stall_warnings=True)
-    # # LIMIT HANDLER STARTS HERE
-    def limit_handled(cursor):
-        print("limit handler")
-        while True:
-            try:
-                yield cursor.next()
-            except tweepy.RateLimitError:
-                print("start handler")
-                time.sleep(15 * 60)
+    # # # LIMIT HANDLER STARTS HERE
+    # def limit_handled(cursor):
+    #     print("limit handler")
+    #     while True:
+    #         try:
+    #             yield cursor.next()
+    #         except tweepy.RateLimitError:
+    #             print("start handler")
+    #             time.sleep(15 * 60)
 
     def __init__(self, api):
         self.api = api
         self.me = api.me()
 
     def on_error(self, status):
+        print("ERRROR")
         logger.error(status)
+        time.sleep(15 * 60)
+        continue
 
     def on_status(self, tweet):
         print("Processing tweet id ", tweet.id)
