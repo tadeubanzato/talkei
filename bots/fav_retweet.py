@@ -39,7 +39,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         if tweepy.TweepError:
-            t = (15 * 60)
+            t = (3)
             while t:
                 mins, secs = divmod(t, 60)
                 timer = '{:02d}:{:02d}'.format(mins, secs)
