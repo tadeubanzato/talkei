@@ -55,6 +55,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 #tweet.user.follow()
+                print('ENTRANDO ESTADO DE ESPERA - FOLLOW')
                 if not tweet.user.following:
                     tweet.user.follow()
                     t = (15 * 60)
@@ -80,6 +81,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 yield cursor.next()
             except tweepy.RateLimitError:
+                print('ENTRANDO ESTADO DE ESPERA - API LIMIT')
                 t = (15 * 60)
                 while t:
                     mins, secs = divmod(t, 60)
