@@ -67,7 +67,19 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     #api = create_api()
-    time.sleep(100)
+    c = tweepy.Cursor(api.search,
+                           q=search,
+                           include_entities=True).items()
+    while True:
+        try:
+            tweet = c.next()
+            # Insert into db
+        except tweepy.TweepError:
+            time.sleep(60 * 15)
+            continue
+        except StopIteration:
+            break
+
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
