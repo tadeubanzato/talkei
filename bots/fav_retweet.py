@@ -28,8 +28,21 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        #if tweepy.TweepError :
-        time.sleep(20)
+        def limit_handled(cursor):
+            while True:
+                try:
+                    yield cursor.next()
+                except tweepy.RateLimitError:
+                    print('ENTRANDO ESTADO DE ESPERA - API LIMIT')
+                    t = (15 * 60)
+                    while t:
+                        mins, secs = divmod(t, 60)
+                        timer = '{:02d}:{:02d}'.format(mins, secs)
+                        print(timer)
+                        time.sleep(1)
+                        t -= 1
+
+        time.sleep(15 * 60)
         # t = (3)
         # while t:
         #     mins, secs = divmod(t, 60)
@@ -58,16 +71,16 @@ class FavRetweetListener(tweepy.StreamListener):
                 print('ENTRANDO ESTADO DE ESPERA - FOLLOW')
                 if not tweet.user.following:
                     tweet.user.follow()
-                    t = (15 * 60)
-                    while t:
-                        mins, secs = divmod(t, 60)
-                        timer = '{:02d}:{:02d}'.format(mins, secs)
-                        print(timer)
-                        time.sleep(1)
-                        t -= 1
-                    print('Restart')
                     print("Following: ",tweet.user)
-
+                    # t = (15 * 60)
+                    # while t:
+                    #     mins, secs = divmod(t, 60)
+                    #     timer = '{:02d}:{:02d}'.format(mins, secs)
+                    #     print(timer)
+                    #     time.sleep(1)
+                    #     t -= 1
+                    # print('Restart')
+                    # print("Following: ",tweet.user)
                     return
                     # print("Following: ",tweet.user)
                     # print(")
@@ -75,20 +88,6 @@ class FavRetweetListener(tweepy.StreamListener):
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
-
-    def limit_handled(cursor):
-        while True:
-            try:
-                yield cursor.next()
-            except tweepy.RateLimitError:
-                print('ENTRANDO ESTADO DE ESPERA - API LIMIT')
-                t = (15 * 60)
-                while t:
-                    mins, secs = divmod(t, 60)
-                    timer = '{:02d}:{:02d}'.format(mins, secs)
-                    print(timer)
-                    time.sleep(1)
-                    t -= 1
 
     for follower in limit_handled(tweepy.Cursor(api.followers).items()):
         if follower.friends_count < 300:
