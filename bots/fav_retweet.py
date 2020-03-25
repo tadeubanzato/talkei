@@ -29,7 +29,6 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
 
-        print("Total count: ", x)
         #if tweepy.TweepError :
         time.sleep(5)
         # t = (3)
