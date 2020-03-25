@@ -29,13 +29,14 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         #if tweepy.TweepError :
-        t = (20)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(timer)
-            time.sleep(1)
-            t -= 1
+        time.sleep(20)
+        # t = (20)
+        # while t:
+        #     mins, secs = divmod(t, 60)
+        #     timer = '{:02d}:{:02d}'.format(mins, secs)
+        #     print(timer)
+        #     time.sleep(1)
+        #     t -= 1
 
         print("Processing tweet id ", tweet.id)
         if tweet.in_reply_to_status_id is not None or \
