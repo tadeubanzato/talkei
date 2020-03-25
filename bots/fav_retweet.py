@@ -20,16 +20,6 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
-    # # # LIMIT HANDLER STARTS HERE
-    # def limit_handled(cursor):
-    #     print("limit handler")
-    #     while True:
-    #         try:
-    #             yield cursor.next()
-    #         except tweepy.RateLimitError:
-    #             print("start handler")
-    #             time.sleep(15 * 60)
-
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -38,16 +28,14 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        try:
-            if tweepy.TweepError :
-                t = (3)
-                while t:
-                    mins, secs = divmod(t, 60)
-                    timer = '{:02d}:{:02d}'.format(mins, secs)
-                    print(timer)
-                    time.sleep(1)
-                    t -= 1
-        except Exception as e:
+        if tweepy.TweepError :
+            t = (3)
+            while t:
+                mins, secs = divmod(t, 60)
+                timer = '{:02d}:{:02d}'.format(mins, secs)
+                print(timer)
+                time.sleep(1)
+                t -= 1
 
         print("Processing tweet id ", tweet.id)
         if tweet.in_reply_to_status_id is not None or \
@@ -111,9 +99,7 @@ if __name__ == "__main__":
 #"Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"
 
 
-# c = tweepy.Cursor(api.search,
-#                        q=search,
-#                        include_entities=True).items()
+# c = tweepy.Cursor()
 # while True:
 #     try:
 #         tweet = c.next()
