@@ -20,17 +20,21 @@ auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
-users = tweepy.Cursor(api.followers, screen_name=accountvar).items()
-
-while True:
-    try:
-        user = next(users)
-    except tweepy.TweepError:
-        time.sleep(60*15)
-        user = next(users)
-    except StopIteration:
-        break
-    print "@" + user.screen_name
+for follower in tweepy.Cursor(api.followers).items():
+    follower.follow()
+#
+#
+# users = tweepy.Cursor(api.followers, screen_name=accountvar).items()
+#
+# while True:
+#     try:
+#         user = next(users)
+#     except tweepy.TweepError:
+#         time.sleep(60*15)
+#         user = next(users)
+#     except StopIteration:
+#         break
+#     print "@" + user.screen_name
 
 
 # logging.basicConfig(level=logging.INFO)
