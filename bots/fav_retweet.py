@@ -19,6 +19,19 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
+    c = tweepy.Cursor(api.search,
+                           q=search,
+                           include_entities=True).items()
+    while True:
+        try:
+            tweet = c.next()
+            # Insert into db
+        except tweepy.TweepError:
+            time.sleep(60 * 15)
+            continue
+        except StopIteration:
+            break
+
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -46,8 +59,6 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.favorite()
             except Exception as e:
-                # time.sleep(60 * 15)
-                # return
                 logger.error("Error on fav", exc_info=True)
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
@@ -57,22 +68,16 @@ class FavRetweetListener(tweepy.StreamListener):
                 #print("Following user: ",tweet.user)
                 return
             except Exception as e:
-                # time.sleep(60 * 15)
-                # return
                 logger.error("Error on fav and retweet", exc_info=True)
 
+
+
+
 def main(keywords):
-    while True:
-        try:
-            #api = create_api()
-            tweets_listener = FavRetweetListener(api)
-            stream = tweepy.Stream(api.auth, tweets_listener)
-            stream.filter(track=keywords, languages=["pt"])
-        except tweepy.TweepError:
-                time.sleep(60 * 15)
-                return
-        except StopIteration:
-                break
+    #api = create_api()
+    tweets_listener = FavRetweetListener(api)
+    stream = tweepy.Stream(api.auth, tweets_listener)
+    stream.filter(track=keywords, languages=["pt"])
 
 if __name__ == "__main__":
     main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi"])
