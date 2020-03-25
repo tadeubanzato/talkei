@@ -19,7 +19,6 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
-
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
@@ -29,7 +28,7 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        x = x + 1
+        x += 1
         print("Total count: ", x)
         #if tweepy.TweepError :
         time.sleep(5)
