@@ -18,7 +18,7 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
-
+print("TESTE")
 # STREAM TIMELINE TWEETS amd RETWEETS
 class MyStreamListener(tweepy.StreamListener):
     def __init__(self, api):
