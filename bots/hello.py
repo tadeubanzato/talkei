@@ -36,7 +36,6 @@ client = gspread.authorize(creds)
 # print(talkeiMessage)
 
 sheet = client.open('Talkei_Messages').sheet1
-#pp = pprint.PrettyPrinter()
 
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 #talkeiMessage = sheet.cell(3, 1).value
@@ -44,7 +43,6 @@ x = randint(1, fillrows)
 print (sheet.cell(x,1).value)
 
 talkeiMessage = sheet.cell(x,1).value
-#print(talkeiMessage + emoji.emojize(' :hankey:'))
 api.update_status(talkeiMessage)
 
 
@@ -57,20 +55,3 @@ api.update_status(talkeiMessage)
 # #to extract a particular cell value
 # sheet.cell(1, 1).value
 # pp.pprint(talkeiMessage)
-
-# logger = logging.getLogger()
-#
-# # Authenticate to Twitter
-# auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
-#     "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
-# auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
-#     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
-#
-# # Create API object
-# api = tweepy.API(auth, wait_on_rate_limit=True,
-#     wait_on_rate_limit_notify=True)
-#
-# logging.basicConfig(level=logging.INFO)
-# logger = logging.getLogger()
-#
-# api.update_status("Hello Tweepy")
