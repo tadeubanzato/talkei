@@ -58,9 +58,16 @@ class FavRetweetListener(tweepy.StreamListener):
                 #tweet.user.follow()
                 if not tweet.user.following:
                     tweet.user.follow()
-                    print "Start : %s" % time.ctime()
-                        time.sleep (15 * 60)
-                    print "End : %s" % time.ctime()
+                    t = (15 * 30)
+                    while t:
+                        mins, secs = divmod(t, 60)
+                        timer = '{:02d}:{:02d}'.format(mins, secs)
+                        print(timer)
+                        time.sleep(1)
+                        t -= 1
+                    print('Restart')
+                    print("Following: ",tweet.user)
+
                     return
                     # print("Following: ",tweet.user)
                     # print(")
