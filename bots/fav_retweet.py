@@ -58,7 +58,19 @@ class FavRetweetListener(tweepy.StreamListener):
                 #tweet.user.follow()
                 if not tweet.user.following:
                     tweet.user.follow()
-                    time.sleep(15 * 30)
+                    def countdown(t):
+                        while t:
+                            mins, secs = divmod(t, 60)
+                            timer = '{:02d}:{:02d}'.format(mins, secs)
+                            print(timer, end="\r")
+                            time.sleep(1)
+                            t -= 1
+                        print('Restart')
+                        print("Following: ",tweet.user)
+                    t = (15 * 30)
+                    # print("Following: ",tweet.user)
+                    # print(")
+                    # time.sleep(15 * 30)
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
