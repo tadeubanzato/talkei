@@ -50,7 +50,6 @@ class FavRetweetListener(tweepy.StreamListener):
             # Retweet, since we have not retweeted it yet
             try:
                 tweet.retweet()
-                print('ENTRANDO ESTADO DE ESPERA - FOLLOW')
                 if not tweet.user.following:
                     while True:
                         try:
@@ -66,6 +65,10 @@ class FavRetweetListener(tweepy.StreamListener):
                     # print("Following: ",tweet.user)
                     # print(")
                     # time.sleep(15 * 30)
+            except tweepy.TweepError:
+                time.sleep(60 * 15)
+                item = next(items)
+                
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
 
@@ -80,4 +83,3 @@ def main(keywords):
 
 if __name__ == "__main__":
     main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente", "biroliro", "bolsonaro imbecil"])
-    time.sleep(15)
