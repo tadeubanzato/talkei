@@ -68,6 +68,7 @@ class FavRetweetListener(tweepy.StreamListener):
                         print("Following: ",tweet.user)
                         tweet.user.follow()
                     t = (15 * 30)
+                    return
                     # print("Following: ",tweet.user)
                     # print(")
                     # time.sleep(15 * 30)
