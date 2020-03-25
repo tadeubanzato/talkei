@@ -62,7 +62,7 @@ class FavRetweetListener(tweepy.StreamListener):
                 logger.error("Error on fav and retweet", exc_info=True)
 
 def main(keywords):
-    while true:
+    while True:
         try:
             #api = create_api()
             tweets_listener = FavRetweetListener(api)
