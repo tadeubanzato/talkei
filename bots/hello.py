@@ -45,13 +45,13 @@ def main():
 
     print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
     t = (10)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(timer, end="\r")
-            time.sleep(1)
-            t -= 1
-        print('Enviando!!!')
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+    print('Enviando!!!')
 
   status = api.update_status(status=talkeiMessage)
 
