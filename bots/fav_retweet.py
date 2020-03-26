@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
-"""
-
-Thi script is for listening Twitter timeline and:
-1. Favorite all twits with the comments based on the search keywords
-2. Retweet any twits with the search keywords criteria
-3. Follow any users with that twitted with the search criteria
-
-"""
-
 import tweepy
 import logging
 import json
 import time
+
+"""
+This script is for listening Twitter timeline and:
+1. Favorite all twits with the comments based on the search keywords
+2. Retweet any twits with the search keywords criteria
+3. Follow any users with that twitted with the search criteria
+"""
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
@@ -71,7 +69,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 if not tweet.user.following:
-                    print(bcolors.HEADER + "Following user: " + bcolors.ENDC,tweet.user.name)
+                    print(bcolors.OKBLUE + "Following user: " + bcolors.ENDC,tweet.user.name)
                     #time.sleep(60 * 15)
                     t=(10)
                     while t:
