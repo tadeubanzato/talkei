@@ -75,6 +75,7 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_error(self, status):
         logger.error(status)
 
+
 def main(keywords):
     #api = create_api()
     tweets_listener = FavRetweetListener(api)
