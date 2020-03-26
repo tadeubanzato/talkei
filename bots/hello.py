@@ -45,7 +45,7 @@ def main():
 
     talkeiMessage = sheet.cell(x,1).value
     print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
-    t = (10)
+    t = (60 * 60)
     while t:
         mins, secs = divmod(t, 60)
         timer = '{:02d}:{:02d}'.format(mins, secs)

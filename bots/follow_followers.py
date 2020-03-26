@@ -16,9 +16,7 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
-# Create API object
-api = tweepy.API(auth, wait_on_rate_limit=True,
-    wait_on_rate_limit_notify=True)
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -32,6 +30,10 @@ def follow_followers(api):
             follower.follow()
 
 def main():
+    # Create API object
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
+        
     #api = create_api()
     while True:
         follow_followers(api)
