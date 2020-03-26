@@ -50,7 +50,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 if not tweet.user.following:
-                    print("Following user:",tweet.user)
+                    print("Following user:",tweet.user.name)
                     time.sleep(60 * 15)
                     # while True:
                     #     try:
