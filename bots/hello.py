@@ -36,13 +36,14 @@ sheet = client.open('Talkei_Messages').sheet1
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 x = randint(1, fillrows)
 
-talkeiMessage = sheet.cell(x,1).value
+
 
 def main():
 
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
+        talkeiMessage = sheet.cell(x,1).value
     print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
     t = (10)
     while t:
@@ -52,8 +53,7 @@ def main():
         time.sleep(1)
         t -= 1
     print('Enviando!!!')
-
-  status = api.update_status(status=talkeiMessage)
+    status = api.update_status(status=talkeiMessage)
 
   # Webhook will send the tweet message to IFTTT
   report = {}
