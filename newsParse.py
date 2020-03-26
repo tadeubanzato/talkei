@@ -5,7 +5,7 @@
 from GoogleNews import GoogleNews
 
 googlenews = GoogleNews()
-googlenews.search('Trump')
+googlenews.search('Bolsonaro')
 result = googlenews.result()
 print(len(result))
 
