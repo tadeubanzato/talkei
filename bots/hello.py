@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# bots/hello.py
 
 # git pull origin master
 import json
@@ -12,7 +13,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 #import pprint
 import random
 from random import *
-import emoji
 import requests
 
 #logger = logging.getLogger()
@@ -47,7 +47,7 @@ x = randint(1, fillrows)
 talkeiMessage = sheet.cell(x,1).value
 api.update_status(talkeiMessage)
 
-# Webhook will receive IP address from the pi
+# Webhook will send the tweet message to IFTTT
 report = {}
 report["value1"] = (sheet.cell(x,1).value)
 requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)

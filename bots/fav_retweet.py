@@ -1,4 +1,6 @@
-# tweepy-bots/bots/favretweet.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# bots/fav_retweet.py
 
 import tweepy
 import logging

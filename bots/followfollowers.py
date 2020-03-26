@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# bots/followfollowers.py
 
-# git pull origin master
 import json
 import tweepy
 import logging
