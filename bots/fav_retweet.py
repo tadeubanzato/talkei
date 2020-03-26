@@ -41,9 +41,15 @@ class FavRetweetListener(tweepy.StreamListener):
                 tweet.favorite()
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
+
             except tweepy.TweepError:
-                time.sleep(60 * 15)
-                #item = next(items)
+                t=(60 * 15)
+                while t:
+                    mins, secs = divmod(t, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print("API rest, restarting in:", timer, end="\r")
+                    time.sleep(1)
+                    t -= 1
 
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
@@ -56,26 +62,18 @@ class FavRetweetListener(tweepy.StreamListener):
                     while t:
                         mins, secs = divmod(t, 60)
                         timer = '{:02d}:{:02d}'.format(mins, secs)
-                        print(timer, end="\r")
+                        print("API rest, restarting in:", timer, end="\r")
                         time.sleep(1)
                         t -= 1
-                    # while True:
-                    #     try:
-                    #         item = next(item)
-                    #     except tweepy.TweepError:
-                    #         time.sleep(60 * 15)
-                    #         #item = next(item)
-                    #     print item
-                # if not tweet.user.following:
-                #     tweet.user.follow()
-                #     time.sleep(5 * 60)
-                #     return
-                    # print("Following: ",tweet.user)
-                    # print(")
-                    # time.sleep(15 * 30)
+
             except tweepy.TweepError:
-                time.sleep(60 * 15)
-                #item = next(item)
+                t=(60 * 15)
+                while t:
+                    mins, secs = divmod(t, 60)
+                    timer = '{:02d}:{:02d}'.format(mins, secs)
+                    print("API rest, restarting in:", timer, end="\r")
+                    time.sleep(1)
+                    t -= 1
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
@@ -85,7 +83,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-    #api = create_api()
+    api = create_api()
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
