@@ -39,12 +39,11 @@ class FavRetweetListener(tweepy.StreamListener):
             # Mark it as Liked, since we have not done it yet
             try:
                 tweet.favorite()
-                time.sleep(30)
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
             except tweepy.TweepError:
                 time.sleep(60 * 15)
-                item = next(items)
+                #item = next(items)
 
         if not tweet.retweeted:
             # Retweet, since we have not retweeted it yet
@@ -52,13 +51,14 @@ class FavRetweetListener(tweepy.StreamListener):
                 tweet.retweet()
                 if not tweet.user.following:
                     print("Following user:",tweet.user)
-                    while True:
-                        try:
-                            item = next(item)
-                        except tweepy.TweepError:
-                            time.sleep(60 * 15)
-                            item = next(item)
-                        print item
+                    time.sleep(60 * 15)
+                    # while True:
+                    #     try:
+                    #         item = next(item)
+                    #     except tweepy.TweepError:
+                    #         time.sleep(60 * 15)
+                    #         #item = next(item)
+                    #     print item
                 # if not tweet.user.following:
                 #     tweet.user.follow()
                 #     time.sleep(5 * 60)
@@ -68,7 +68,7 @@ class FavRetweetListener(tweepy.StreamListener):
                     # time.sleep(15 * 30)
             except tweepy.TweepError:
                 time.sleep(60 * 15)
-                item = next(item)
+                #item = next(item)
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
@@ -78,7 +78,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-    #api = create_api()
+    api = create_api()
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
