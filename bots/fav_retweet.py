@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
+"""
+
+Thi script is for listening Twitter timeline and:
+1. Favorite all twits with the comments based on the search keywords
+2. Retweet any twits with the search keywords criteria
+3. Follow any users with that twitted with the search criteria
+
+"""
 
 import tweepy
 import logging
@@ -13,6 +21,7 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
+# Create color code
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -22,10 +31,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-# Create API object
-# api = tweepy.API(auth, wait_on_rate_limit=True,
-#     wait_on_rate_limit_notify=True)
 
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
@@ -93,7 +98,8 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-    #api = create_api()
+
+    # Create API connection
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
     tweets_listener = FavRetweetListener(api)
