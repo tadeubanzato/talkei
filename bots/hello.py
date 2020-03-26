@@ -41,7 +41,7 @@ fillrows = len(sheet.get_all_values()) # Get total number of rolls with data add
 x = randint(1, fillrows)
 
 talkeiMessage = sheet.cell(x,1).value
-print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC, )
+print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
 t = (10)
 def countdown(t):
     while t:
