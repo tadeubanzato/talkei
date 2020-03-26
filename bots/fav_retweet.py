@@ -42,7 +42,7 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        print(bcolors.WARNING + "Processing tweet id: " + bcolors.ENDC, tweet.id)
+        print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
