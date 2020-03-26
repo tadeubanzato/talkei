@@ -28,6 +28,8 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
+report = {}
+
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
@@ -35,8 +37,6 @@ sheet = client.open('Talkei_Messages').sheet1
 
 fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
 x = randint(1, fillrows)
-
-
 
 def main():
 
@@ -53,12 +53,12 @@ def main():
         time.sleep(1)
         t -= 1
     print('Enviando!!!')
+
     status = api.update_status(status=talkeiMessage)
 
-  # Webhook will send the tweet message to IFTTT
-  report = {}
-  report["value1"] = (sheet.cell(x,1).value)
-  requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
+    # Webhook will send the tweet message to IFTTT
+    report["value1"] = (sheet.cell(x,1).value)
+    requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
 
 if __name__ == "__main__":
   main()
