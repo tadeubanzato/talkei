@@ -28,10 +28,6 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
-# Create API object
-api = tweepy.API(auth, wait_on_rate_limit=True,
-    wait_on_rate_limit_notify=True)
-
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
@@ -41,23 +37,31 @@ fillrows = len(sheet.get_all_values()) # Get total number of rolls with data add
 x = randint(1, fillrows)
 
 talkeiMessage = sheet.cell(x,1).value
-print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
-t = (10)
-def countdown(t):
-    while t:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end="\r")
-        time.sleep(1)
-        t -= 1
-    print('Enviando!!!')
-api.update_status(talkeiMessage)
 
-# Webhook will send the tweet message to IFTTT
-report = {}
-report["value1"] = (sheet.cell(x,1).value)
-requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
+def main():
 
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
+
+    print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
+        t = (10)
+            while t:
+                mins, secs = divmod(t, 60)
+                timer = '{:02d}:{:02d}'.format(mins, secs)
+                print(timer, end="\r")
+                time.sleep(1)
+                t -= 1
+                print('Enviando!!!')
+
+  status = api.update_status(status=talkeiMessage)
+
+  # Webhook will send the tweet message to IFTTT
+  report = {}
+  report["value1"] = (sheet.cell(x,1).value)
+  requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
+
+if __name__ == "__main__":
+  main()
 
 ## Examples of code to get data from Google Sheets
 # #to get all the values inside the file
