@@ -78,7 +78,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-    api = create_api()
+    #api = create_api()
     tweets_listener = FavRetweetListener(api)
     stream = tweepy.Stream(api.auth, tweets_listener)
     stream.filter(track=keywords, languages=["pt"])
