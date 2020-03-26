@@ -43,7 +43,7 @@ def main():
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
-        talkeiMessage = sheet.cell(x,1).value
+    talkeiMessage = sheet.cell(x,1).value
     print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
     t = (10)
     while t:
