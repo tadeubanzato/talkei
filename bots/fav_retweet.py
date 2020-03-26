@@ -7,10 +7,12 @@ import json
 import time
 
 """
+
 This script is for listening Twitter timeline and:
 1. Favorite all twits with the comments based on the search keywords
 2. Retweet any twits with the search keywords criteria
 3. Follow any users with that twitted with the search criteria
+
 """
 
 # Authenticate to Twitter
