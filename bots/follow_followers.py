@@ -33,7 +33,7 @@ def main():
     # Create API object
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
-        
+
     #api = create_api()
     while True:
         follow_followers(api)
