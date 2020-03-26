@@ -57,7 +57,7 @@ class FavRetweetListener(tweepy.StreamListener):
                 while t:
                     mins, secs = divmod(t, 60)
                     timer = '{:02d}:{:02d}'.format(mins, secs)
-                    print("API rest, restarting in:", timer, end="\r")
+                    print(bcolors.OKGREEN + "API rest on error 1, restarting in:" + bcolors.ENDC, timer, end="\r")
                     time.sleep(1)
                     t -= 1
 
@@ -66,13 +66,13 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 if not tweet.user.following:
-                    print(bcolors.WARNING + "Following user: " + bcolors.ENDC,tweet.user.name)
+                    print(bcolors.FAIL + "Following user: " + bcolors.ENDC,tweet.user.name)
                     #time.sleep(60 * 15)
                     t=(60 * 15)
                     while t:
                         mins, secs = divmod(t, 60)
                         timer = '{:02d}:{:02d}'.format(mins, secs)
-                        print("API rest, restarting in:", timer, end="\r")
+                        print(bcolors.OKGREEN + "API rest on follow, restarting in:" + bcolors.ENDC, timer, end="\r")
                         time.sleep(1)
                         t -= 1
 
@@ -81,7 +81,7 @@ class FavRetweetListener(tweepy.StreamListener):
                 while t:
                     mins, secs = divmod(t, 60)
                     timer = '{:02d}:{:02d}'.format(mins, secs)
-                    print("API rest, restarting in:", timer, end="\r")
+                    print(bcolors.OKGREEN + "API rest on error 2, restarting in:" + bcolors.ENDC, timer, end="\r")
                     time.sleep(1)
                     t -= 1
 
