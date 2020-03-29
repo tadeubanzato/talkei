@@ -34,7 +34,6 @@ logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
     print(bcolors.YELLOW + "Retrieving mentions...")
-    print("Retrieving mentions")
     new_since_id = since_id
     for tweet in tweepy.Cursor(api.mentions_timeline,
         since_id=since_id).items():
