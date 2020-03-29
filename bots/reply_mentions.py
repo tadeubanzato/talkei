@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 # bots/reply_mentions.py
 
-# git pull origin master
-import json
 import tweepy
 import logging
-import os
+import json
 import time
+
+"""
+This script is for replying to any mentions on Twitter timeline and:
+
+V1.02
+"""
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
@@ -25,11 +29,12 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-logging.basicConfig(level=logging.INFO)
+# Create LOGGER object
+logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
-    logger.info("Retrieving mentions")
+    print("Retrieving mentions")
     new_since_id = since_id
     for tweet in tweepy.Cursor(api.mentions_timeline,
         since_id=since_id).items():
@@ -37,36 +42,27 @@ def check_mentions(api, keywords, since_id):
         if tweet.in_reply_to_status_id is not None:
             continue
         if any(keyword in tweet.text.lower() for keyword in keywords):
-            logger.info("Answering" + tweet.user.name)
+            print(bcolors.BLUE + "Respondendo user: " + tweet.user.name)
 
             if not tweet.user.following:
                 tweet.user.follow()
 
             api.update_status(
-                status="Esse presidente é um bossal #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
+                status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
                 in_reply_to_status_id=tweet.id,
             )
     return new_since_id
 
 def main():
-    try:
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
+    # Create API connection
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
 
-        since_id = 1
-        while True:
-            since_id = check_mentions(api, ["help", "support"], since_id)
-            logger.info("Waiting...")
-            time.sleep(60)
-
-    except tweepy.TweepError:
-        t=(60 * 15)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
-            time.sleep(1)
-            t -= 1
+    since_id = 1
+    while True:
+        since_id = check_mentions(api, ["help", "support"], since_id)
+        logger.info("Waiting...")
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()
