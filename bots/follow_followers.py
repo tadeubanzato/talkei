@@ -7,7 +7,15 @@ import logging
 import os
 import time
 
-logger = logging.getLogger()
+# Create color code
+class bcolors:
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
@@ -32,9 +40,10 @@ logger = logging.getLogger()
 # FOLLOW FOLLOWERS
 def follow_followers(api):
     print("Retrieving and following followers")
+    print(bcolors.BLUE + "Retrieving and following followers" + bcolors.ENDC)
     for follower in tweepy.Cursor(api.followers).items():
         if not follower.following:
-            print("Following: " + follower.name)
+            print(bcolors.GREEN + "Following: " + bcolors.ENDC,follower.name)
             follower.follow()
 
 def main():
