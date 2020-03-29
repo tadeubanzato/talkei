@@ -6,7 +6,6 @@ import logging
 import json
 import time
 
-
 """
 This script is for replying to any mentions on Twitter timeline and:
 
@@ -52,6 +51,9 @@ def check_mentions(api, keywords, since_id):
                 in_reply_to_status_id=tweet.id,
             )
     return new_since_id
+
+def on_error(self, status):
+    logger.error(status)
 
 def main():
     # Create API connection
