@@ -15,6 +15,16 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
+# Create color code
+class bcolors:
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
@@ -48,7 +58,7 @@ def main():
             since_id = check_mentions(api, ["help", "support"], since_id)
             logger.info("Waiting...")
             time.sleep(60)
-            
+
     except tweepy.TweepError:
         t=(60 * 15)
         while t:
