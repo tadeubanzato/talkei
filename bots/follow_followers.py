@@ -7,16 +7,6 @@ import logging
 import os
 import time
 
-# Create color code
-class bcolors:
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
     "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")

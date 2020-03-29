@@ -11,6 +11,12 @@ import random
 from random import *
 import requests
 
+# Authenticate to Twitter
+auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
+    "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
+auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
+    "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
+
 # Create color code
 class bcolors:
     BLUE = '\033[94m'
@@ -20,12 +26,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-# Authenticate to Twitter
-auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
-    "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
-auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
-    "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
 report = {}
 
