@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# bots/reply_mentions.py
-
+# bots/fav_retweet.py
 import tweepy
 import logging
 import json
 import time
+
 
 """
 This script is for replying to any mentions on Twitter timeline and:

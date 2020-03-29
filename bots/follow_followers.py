@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/followfollowers.py
-
 import json
 import tweepy
 import logging
@@ -16,9 +15,18 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
+# Create color code
+class bcolors:
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
-
-logging.basicConfig(level=logging.INFO)
+# Create LOGGER object
+logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 # FOLLOW FOLLOWERS

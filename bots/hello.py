@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/hello.py
-
 import json
 import tweepy
 import os
