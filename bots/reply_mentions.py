@@ -69,7 +69,7 @@ def main():
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API Tweep rest 1 in:" + bcolors.ENDC, timer, "\r")
+            print(bcolors.RED + "Restart:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
 
