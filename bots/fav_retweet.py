@@ -71,7 +71,7 @@ class FavRetweetListener(tweepy.StreamListener):
             try:
                 tweet.retweet()
                 if not tweet.user.following:
-                    print(bcolors.BLUE + "Following user: " + bcolors.ENDC,tweet.user.name)
+                    print(bcolors.YELLOW + "Following user: " + bcolors.ENDC,tweet.user.name)
 
             except Exception as e:
                 logger.error("Error on fav and retweet", exc_info=True)
