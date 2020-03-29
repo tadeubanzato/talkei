@@ -28,9 +28,9 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 report = {}
-
+print(bcolors.BLUE + "Connecting to Google Sheet" + bcolors.ENDC)
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('talkei-0c766b314509.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
 sheet = client.open('Talkei_Messages').sheet1
 
