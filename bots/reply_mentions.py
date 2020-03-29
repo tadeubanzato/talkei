@@ -18,6 +18,10 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
+# Create API connection
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
+
 # Create color code
 class bcolors:
     BLUE = '\033[94m'
@@ -56,9 +60,6 @@ def on_error(self, status):
     logger.error(status)
 
 def main():
-    # Create API connection
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
 
     since_id = 1
     while True:
