@@ -59,14 +59,18 @@ def main():
     # Create API connection
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
-
     since_id = 1
     while True:
         since_id = check_mentions(api, ["help", "support"], since_id)
         logger.info("Waiting...")
-        time.sleep(60)
+        #time.sleep(60)
+        t=(60)
+        while t:
+            mins, secs = divmod(t, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(bcolors.RED + "Restart API Tweep rest 1 in:" + bcolors.ENDC, timer, "\r")
+            time.sleep(1)
+            t -= 1
 
 if __name__ == "__main__":
     main()
-
-    
