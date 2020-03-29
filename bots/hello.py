@@ -1,4 +1,4 @@
-#!/usr/bin python3
+#!/usr/bin/en python3
 # -*- coding: utf-8 -*-
 # bots/hello.py
 import json
