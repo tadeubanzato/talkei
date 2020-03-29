@@ -15,10 +15,6 @@ auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
 auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
     "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
 
-# Create API object
-api = tweepy.API(auth, wait_on_rate_limit=True,
-    wait_on_rate_limit_notify=True)
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
@@ -43,12 +39,24 @@ def check_mentions(api, keywords, since_id):
     return new_since_id
 
 def main():
-    #api = create_api()
-    since_id = 1
-    while True:
-        since_id = check_mentions(api, ["help", "support"], since_id)
-        logger.info("Waiting...")
-        time.sleep(60)
+    try:
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
+
+        since_id = 1
+        while True:
+            since_id = check_mentions(api, ["help", "support"], since_id)
+            logger.info("Waiting...")
+            time.sleep(60)
+            
+    except tweepy.TweepError:
+        t=(60 * 15)
+        while t:
+            mins, secs = divmod(t, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
+            time.sleep(1)
+            t -= 1
 
 if __name__ == "__main__":
     main()
