@@ -51,10 +51,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
         print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
-        status = api.update_status(
-            status="Esse presidente é um bossal, isso sim! Você também tem culpa. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
-            in_reply_to_status_id=tweet.id,
-        )
+        status = api.update_status(status="Esse presidente é um bossal, isso sim! Você também tem culpa. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",in_reply_to_status_id=tweet.id)
         return
 
     def on_error(self, status):
