@@ -32,8 +32,8 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# api = tweepy.API(auth, wait_on_rate_limit=True,
-#     wait_on_rate_limit_notify=True)
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
 
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
