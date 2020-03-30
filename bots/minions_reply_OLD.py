@@ -3,10 +3,8 @@
 # bots/fav_retweet.py
 import json
 import tweepy
-import os
 import time
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 import random
 import requests
 
@@ -43,8 +41,8 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
 
-        # api = tweepy.API(auth, wait_on_rate_limit=True,
-        #     wait_on_rate_limit_notify=True)
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
