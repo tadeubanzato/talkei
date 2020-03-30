@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
-import tweepy
-import logging
 import json
+import tweepy
+import os
 import time
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import random
+from random import *
+import requests
 
 """
-This script is for listening Twitter timeline and:
-1. Favorsite all twits with the comments based on the search keywords
-2. Retweet any twits with the search keywords criteria
-3. Follow any users with that twitted with the search criteria
-
-V1.02
+V1.03
 """
 
 # Authenticate to Twitter
@@ -31,9 +31,13 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# Create LOGGER object
-logging.basicConfig(level=logging.CRITICAL)
-logger = logging.getLogger()
+scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
+client = gspread.authorize(creds)
+sheet = client.open('Talkei_Messages').sheet2
+
+fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
+x = randint(1, fillrows)
 
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
@@ -53,14 +57,15 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
+        m = sheet.cell(x,1).value
+        #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
 
         else:
-            print(bcolors.RED + "RESPONDENDO", bcolors.ENDC)
+            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
             #s = api.update_status(m)
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
@@ -77,6 +82,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
+
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
