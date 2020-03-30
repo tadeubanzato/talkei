@@ -3,6 +3,7 @@
 # bots/fav_retweet.py
 import json
 import tweepy
+import logging
 import time
 import gspread
 import random
