@@ -83,14 +83,14 @@ def main(keywords):
         stream.filter(track=keywords, languages=["pt"])
         reply_new_tweets()
 
-    except tweepy.TweepError:
-        t=(60 * 15)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
-            time.sleep(1)
-            t -= 1
+    # except tweepy.TweepError:
+    #     t=(60 * 15)
+    #     while t:
+    #         mins, secs = divmod(t, 60)
+    #         timer = '{:02d}:{:02d}'.format(mins, secs)
+    #         print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
+    #         time.sleep(1)
+    #         t -= 1
 
 if __name__ == "__main__":
     main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
