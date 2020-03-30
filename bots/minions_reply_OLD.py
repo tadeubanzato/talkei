@@ -41,8 +41,8 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
 
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
+        # api = tweepy.API(auth, wait_on_rate_limit=True,
+        #     wait_on_rate_limit_notify=True)
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
@@ -75,11 +75,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
-
     try:
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
