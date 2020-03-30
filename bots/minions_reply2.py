@@ -41,7 +41,7 @@ while True:
 
     for tweet in public_tweets:
         twee_len = len(tweet.text)
-        condition = "։".decode('utf-8')  # ' : ' is different from ' ։ '
+        #condition = "։".decode('utf-8')  # ' : ' is different from ' ։ '
         sn = tweet.user.screen_name.encode('utf-8')
         status_y = "@%s %s Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro" % (sn, twee_len)
         status_n = "@%s %s O Bolsonaro realmente é muito superior que todo o mundo, que imbecíl #ForaBolsonaro #AcabouBolsonaro #Genocida" % (sn, twee_len)
