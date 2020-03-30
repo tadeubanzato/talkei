@@ -52,13 +52,12 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
         MensagemMinion = "Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida"
-        #status = api.update_status(status=MensagemMinion)
-
-        api.update_status(MensagemMinion, tweetId)
-        # status = api.update_status(
-        #     status=MensagemMinion,
-        #     in_reply_to_status_id=tweet.id,
-        # )
+        user_name = "talkei2019"
+        tweets = api.user_timeline(screen_name=user_name)
+        firt_tweet = tweets[0]
+        print(firt_tweet.text)
+        print("done")
+        api.update_status('@{} Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida'.format(user_name), firt_tweet.id)
 
 
     def on_error(self, status):
