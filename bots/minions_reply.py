@@ -50,7 +50,8 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
         user_name = "talkei2019"
         tweets = api.user_timeline(screen_name=user_name)
         firt_tweet = tweets[0]
