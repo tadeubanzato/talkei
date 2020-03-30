@@ -58,7 +58,7 @@ class FavRetweetListener(tweepy.StreamListener):
         sn = tweet.user.screen_name
         #tweets = api.user_timeline(screen_name=user_name)
         m = "@%s %s" % (sn, m,)
-        s = api.update_status(m, in_reply_to_status_id = tweet.id)
+        s = api.update_status(m,tweet.id)
 
     # except Exception as e:
     #     logger.error("Error on fav and retweet", exc_info=True)
