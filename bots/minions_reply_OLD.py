@@ -74,6 +74,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
+
     try:
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
