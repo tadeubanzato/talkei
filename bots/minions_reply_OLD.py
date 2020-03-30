@@ -48,7 +48,10 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
+        lines = open('frases.txt').read().splitlines()
+        m =random.choice(lines)
+        #frases = ['Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro', 'O Bolsonaro realmente é muito superior que todo o mundo, que imbecíl #ForaBolsonaro #AcabouBolsonaro #Genocida']
+        #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
