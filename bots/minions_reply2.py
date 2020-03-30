@@ -51,7 +51,7 @@ while True:
                     print(bcolors.BLUE + "Message: ",tweet.text, bcolors.ENDC)
                     print(bcolors.GREEN + "Reply: ",status_y, bcolors.ENDC)
                     api.update_status(status_y, in_reply_to_status_id = tweet.id)
-                    
+
                 else:
                     print(bcolors.BLUE + "Message: ",tweet.text, bcolors.ENDC)
                     print(bcolors.GREEN + "Reply: ",status_n, bcolors.ENDC)
@@ -69,7 +69,7 @@ while True:
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-            return
+            
 
 
 
