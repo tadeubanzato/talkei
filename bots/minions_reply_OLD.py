@@ -3,9 +3,10 @@
 # bots/fav_retweet.py
 import json
 import tweepy
-import logging
+import os
 import time
 import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 import random
 import requests
 
@@ -42,23 +43,33 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
 
+        # api = tweepy.API(auth, wait_on_rate_limit=True,
+        #     wait_on_rate_limit_notify=True)
+
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        lines = open('frases.txt').read().splitlines()
-        m =random.choice(lines)
+        frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi',
+                    'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi',
+                    'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi',
+                    'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi',
+                    'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi']
 
+        m = random.choice(frases)
+        #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-        #else: tá dificil
-        print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
-        #s = api.update_status(m)
-        sn = tweet.user.screen_name
-        #tweets = api.user_timeline(screen_name=user_name)
-        m = "@%s %s" % (sn, m,)
-        s = api.update_status(m,tweet.id)
+        else:
+            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
+            #s = api.update_status(m)
+            sn = tweet.user.screen_name
+            #tweets = api.user_timeline(screen_name=user_name)
+            m = "@%s %s" % (sn, m,)
+            s = api.update_status(m, in_reply_to_status_id = tweet.id)
+
+            #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), tweet.id)
 
     # except Exception as e:
     #     logger.error("Error on fav and retweet", exc_info=True)
@@ -68,15 +79,18 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
+
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
+
     try:
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
+        reply_new_tweets()
 
     except tweepy.TweepError:
-        t=(2)
+        t=(60 * 15)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
