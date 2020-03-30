@@ -56,7 +56,7 @@ class FavRetweetListener(tweepy.StreamListener):
                     status="Esse presidente é um bossal, e você também é culpado pelas mortes. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
                     in_reply_to_status_id=tweet.id,
                 )
-        return new_since_id
+        return
 
     def on_error(self, status):
         logger.error(status)
