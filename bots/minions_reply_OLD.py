@@ -86,7 +86,7 @@ def main(keywords):
         #reply_new_tweets()
 
     except tweepy.TweepError:
-        t=(60 * 15)
+        t=(1)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
