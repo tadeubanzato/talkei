@@ -65,7 +65,7 @@ class FavRetweetListener(tweepy.StreamListener):
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
             m = "@%s %s" % (sn, m,)
-            s = api.update_status(m, tweet.id)
+            s = api.update_status(m, in_reply_to_status_id = tweet.id)
 
             #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), tweet.id)
 
