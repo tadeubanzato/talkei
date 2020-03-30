@@ -53,10 +53,12 @@ class FavRetweetListener(tweepy.StreamListener):
             return
         MensagemMinion = "Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida"
         #status = api.update_status(status=MensagemMinion)
-        status = api.update_status(
-            status=MensagemMinion,
-            in_reply_to_status_id=tweet.id,
-        )
+
+        api.update_status(MensagemMinion, tweetId)
+        # status = api.update_status(
+        #     status=MensagemMinion,
+        #     in_reply_to_status_id=tweet.id,
+        # )
 
 
     def on_error(self, status):
