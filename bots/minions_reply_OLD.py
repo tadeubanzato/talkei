@@ -8,7 +8,6 @@ import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import random
-from random import *
 import requests
 
 """
@@ -49,12 +48,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi']
-                    
+        frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi', 'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi', 'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi', 'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi', 'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi']
         m = random.choice(frases)
         #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
