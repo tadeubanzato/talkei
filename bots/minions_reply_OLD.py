@@ -47,7 +47,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
-            
+
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         if tweet.in_reply_to_status_id is not None or \
@@ -56,12 +56,12 @@ class FavRetweetListener(tweepy.StreamListener):
             return
 
         else:
-            screen_name = "talkei2019"
+            print(bcolors.RED + "RESPONDENDP", bcolors.ENDC)
             resposta = 'Esse cara é um loco isso sim #Genocida #ForaBolsonaro'  # our status message
             s = api.update_status(resposta)
             #tweets = api.user_timeline(screen_name=user_name)
             sn = tweet.user.screen_name
-            m = "@%s %s" % (sn, resposta,)
+            m = "@talkei2019 %s" % (sn, resposta,)
             s = api.update_status(resposta, tweet.id)
 
             #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), firt_tweet.id)
