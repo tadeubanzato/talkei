@@ -31,13 +31,12 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
-client = gspread.authorize(creds)
-sheet = client.open('Talkei_Messages').sheet2
+frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi',
+            'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi',
+            'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi',
+            'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi',
+            'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi']
 
-fillrows = len(sheet.get_all_values()) # Get total number of rolls with data added
-x = randint(1, fillrows)
 
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
@@ -57,7 +56,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        m = sheet.cell(x,1).value
+        m = random.choice(frases)
         #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
