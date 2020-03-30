@@ -50,7 +50,7 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-        if any(keyword in tweet.text.lower() for keyword in keywords):
+        if any(keywords in tweet.text.lower() for keywords in keywords):
             print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
             api.update_status(
                 status="Esse presidente é um bossal, isso sim! Você também tem culpa. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
