@@ -93,7 +93,12 @@ def main(keywords):
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-        tweets_listener = FavRetweetListener(api)
+            api = tweepy.API(auth, wait_on_rate_limit=True,
+                wait_on_rate_limit_notify=True)
+            tweets_listener = FavRetweetListener(api)
+            stream = tweepy.Stream(api.auth, tweets_listener)
+            stream.filter(track=keywords, languages=["pt"])
+            reply_new_tweets()
 
 if __name__ == "__main__":
     main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
