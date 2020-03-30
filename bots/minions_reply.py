@@ -51,7 +51,7 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-
+        api.update_status("Que bossal #Genocida #SegueoGado", in_reply_to_status_id = tweet.id)
 
 
     def on_error(self, status):
