@@ -44,7 +44,7 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-
+        time.sleep(5)
         # api = tweepy.API(auth, wait_on_rate_limit=True,
         #     wait_on_rate_limit_notify=True)
 
