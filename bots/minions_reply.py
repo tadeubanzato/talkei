@@ -36,7 +36,6 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
-
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -44,29 +43,24 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_error(self, status):
         logger.error(status)
 
-    def on_status(api, self, tweet):
+    def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-#purgels
 
-        # user_name =  "talkei2019"
-        # tweets = api.user_timeline(screen_name=user_name)
-        # firt_tweet = tweets[0]
-        # print(firt_tweet.text)
-        # print("done")
-        # api.update_status('@{} Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida'.format(user_name), firt_tweet.id)
 
+
+            except Exception as e:
+                logger.error("Error on fav and retweet", exc_info=True)
 
     def on_error(self, status):
         logger.error(status)
 
 
 def main(keywords):
-
     try:
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
@@ -80,7 +74,7 @@ def main(keywords):
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
+            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, "\r")
             time.sleep(1)
             t -= 1
 
