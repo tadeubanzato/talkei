@@ -52,7 +52,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-        #else:
+        #else: tá dificil
         print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
         #s = api.update_status(m)
         sn = tweet.user.screen_name
