@@ -36,6 +36,9 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
+    print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
+    print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
+
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -43,26 +46,18 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_error(self, status):
         logger.error(status)
 
-    def on_status(self, tweet):
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
 
-        print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
-        print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
-            return
+    api.update_status("Esse cara é um loco.")
+    user_name = "talkei2019"
+    tweets = api.user_timeline(screen_name=user_name)
+    firt_tweet = tweets[0]
+    print(firt_tweet.text)
+    print("done")
+    api.update_status('@{} louco genocida.'.format(user_name), firt_tweet.id)
 
-        user_name = "talkei2019"
-        tweets = api.user_timeline(screen_name=user_name)
-        firt_tweet = tweets[0]
-        print(firt_tweet.text)
-        print("done")
-        api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), firt_tweet.id)
 
-    # except Exception as e:
-    #     logger.error("Error on fav and retweet", exc_info=True)
+
+
 
     def on_error(self, status):
         logger.error(status)
