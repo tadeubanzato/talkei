@@ -35,6 +35,10 @@ class bcolors:
 api = tweepy.API(auth, wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True)
 
+# Create LOGGER object
+logging.basicConfig(level=logging.CRITICAL)
+logger = logging.getLogger()
+
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
