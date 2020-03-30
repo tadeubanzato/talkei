@@ -46,10 +46,10 @@ class FavRetweetListener(tweepy.StreamListener):
     def check_mentions(api, keywords, since_id):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        if tweet.in_reply_to_status_id is not None \
+        if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
-            continue
+            return
         if any(keywords in tweet.text.lower() for keywords in keywords):
             print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
 
