@@ -45,9 +45,6 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        # Create API connection
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         if tweet.in_reply_to_status_id is not None or \
@@ -55,7 +52,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-        status = api.update_status(
+        api.update_status(
             status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
             in_reply_to_status_id=tweet.id,
         )
@@ -66,10 +63,11 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-    # Create API connection
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
+
     try:
+        # Create API connection
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
