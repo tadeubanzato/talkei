@@ -54,12 +54,12 @@ class FavRetweetListener(tweepy.StreamListener):
         m =random.choice(lines)
         #frases = ['Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro', 'O Bolsonaro realmente é muito superior que todo o mundo, que imbecíl #ForaBolsonaro #AcabouBolsonaro #Genocida']
         #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
-            return
-
-        else:
+        # if tweet.in_reply_to_status_id is not None or \
+        #     tweet.user.id == self.me.id:
+        #     # This tweet is a reply or I'm its author so, ignore it
+        #     return
+        #
+        # else:
             print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
             #s = api.update_status(m)
             sn = tweet.user.screen_name
@@ -83,10 +83,10 @@ def main(keywords):
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
-        #reply_new_tweets()
+        reply_new_tweets()
 
     except tweepy.TweepError:
-        t=(1)
+        t=(60 * 15)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
