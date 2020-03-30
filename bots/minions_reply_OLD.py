@@ -93,7 +93,7 @@ def main(keywords):
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-            return
+        tweets_listener = FavRetweetListener(api)
 
 if __name__ == "__main__":
     main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
