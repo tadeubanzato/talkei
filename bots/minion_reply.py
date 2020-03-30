@@ -46,7 +46,6 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.YELLOW + "Retrieving mentions...")
-        new_since_id = since_id
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
