@@ -7,12 +7,8 @@ import time
 import random
 
 """
-This script is for listening Twitter timeline and:
-1. Favorsite all twits with the comments based on the search keywords
-2. Retweet any twits with the search keywords criteria
-3. Follow any users with that twitted with the search criteria
-
-V1.02
+This script replies to metions to specific search terms defined at the end of the script.
+V1.03
 """
 
 # Authenticate to Twitter
