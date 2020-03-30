@@ -93,8 +93,6 @@ def main(keywords):
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-            api = tweepy.API(auth, wait_on_rate_limit=True,
-                wait_on_rate_limit_notify=True)
             tweets_listener = FavRetweetListener(api)
             stream = tweepy.Stream(api.auth, tweets_listener)
             stream.filter(track=keywords, languages=["pt"])
