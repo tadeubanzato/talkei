@@ -51,7 +51,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-        if not:
+        else:
             screen_name = "talkei2019"
             resposta = 'Esse cara é um loco isso sim #Genocida #ForaBolsonaro'  # our status message
             s = api.update_status(resposta)
