@@ -54,18 +54,18 @@ class FavRetweetListener(tweepy.StreamListener):
         m =random.choice(lines)
         #frases = ['Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro', 'O Bolsonaro realmente é muito superior que todo o mundo, que imbecíl #ForaBolsonaro #AcabouBolsonaro #Genocida']
         #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
-        # if tweet.in_reply_to_status_id is not None or \
-        #     tweet.user.id == self.me.id:
-        #     # This tweet is a reply or I'm its author so, ignore it
-        #     return
-        #
-        # else:
-        print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
-        #s = api.update_status(m)
-        sn = tweet.user.screen_name
-        #tweets = api.user_timeline(screen_name=user_name)
-        m = "@%s %s" % (sn, m,)
-        s = api.update_status(m, in_reply_to_status_id = tweet.id)
+        if tweet.in_reply_to_status_id is not None or \
+            tweet.user.id == self.me.id:
+            # This tweet is a reply or I'm its author so, ignore it
+            return
+
+        else:
+            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
+            #s = api.update_status(m)
+            sn = tweet.user.screen_name
+            #tweets = api.user_timeline(screen_name=user_name)
+            m = "@%s %s" % (sn, m,)
+            s = api.update_status(m, in_reply_to_status_id = tweet.id)
 
             #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), tweet.id)
 
