@@ -54,7 +54,6 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         m = 'Votou no Bolsonaro também assina os óbitos desse energumeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
-        s = api.update_status(m)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
@@ -62,6 +61,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         else:
             print(bcolors.RED + "RESPONDENDO", bcolors.ENDC)
+            s = api.update_status(m)
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
             m = "@%s %s" % (sn, m,)
