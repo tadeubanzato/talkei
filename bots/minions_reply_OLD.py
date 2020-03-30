@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
-import json
 import tweepy
-import os
+import json
 import time
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import random
-import requests
 
 """
-V1.03
+This script is for listening Twitter timeline and:
+1. Favorsite all twits with the comments based on the search keywords
+2. Retweet any twits with the search keywords criteria
+3. Follow any users with that twitted with the search criteria
+
+V1.02
 """
 
 # Authenticate to Twitter
@@ -48,21 +48,14 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi',
-                    'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi']
-
-        m = random.choice(frases)
-        #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
+        m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
 
         else:
-            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
+            print(bcolors.RED + "RESPONDENDO", bcolors.ENDC)
             #s = api.update_status(m)
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
