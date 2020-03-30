@@ -48,7 +48,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        lines = open('file.txt').read().splitlines()
+        lines = open('frases.txt').read().splitlines()
         m =random.choice(lines)
         #m = random.choice(frases)
         #frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi', 'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi', 'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi', 'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi', 'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi','Ogado continua seguindo o líder #Genocidas #foraBolsonaro #AcabouBolsonaro']
