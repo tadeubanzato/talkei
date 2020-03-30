@@ -4,6 +4,7 @@
 import tweepy
 import json
 import time
+import random
 
 """
 This script is for listening Twitter timeline and:
