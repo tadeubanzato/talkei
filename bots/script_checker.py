@@ -7,4 +7,4 @@ for process in psutil.process_iter():
         sys.exit('Process found: exiting.')
 
 print('Process not found: starting it.')
-Popen(['python3', 'fav_retweet.py'])ls
+Popen(['python3', 'fav_retweet.py'])
