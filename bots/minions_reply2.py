@@ -33,6 +33,9 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
+
 while True:
     public_tweets = api.home_timeline(count=5)  # Getting the latest 5 tweets from user's timeline
 
@@ -69,7 +72,7 @@ while True:
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-            
+
 
 
 
