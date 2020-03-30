@@ -43,7 +43,7 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        time.sleep(5)
+
         # api = tweepy.API(auth, wait_on_rate_limit=True,
         #     wait_on_rate_limit_notify=True)
 
@@ -51,22 +51,22 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         # lines = open('frases.txt').read().splitlines()
         # m =random.choice(lines)
-        frases = ['Votou nesse energúmeno assina em baixo as mortes #Genocida #ForaBolsonaro #bolsoNazi', 'Não tem como defender os indefensável #Genocida #ForaBolsonaro #bolsoNazi', 'Impossível apoiar um genocida seja ele quem for #Genocida #ForaBolsonaro #bolsoNazi', 'Não vamos virar a Venezuela mas quem sabe a alemanha de 39 #Genocida #ForaBolsonaro #bolsoNazi', 'Incapaz, acéfalo, genocida, imvecí são os adjetivos para o Bolsonaro #Genocida #ForaBolsonaro #bolsoNazi', 'O gado continua seguindo o líder #Genocidas #foraBolsonaro #AcabouBolsonaro']
-
-        #m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
+        #frases = ['Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro', 'O Bolsonaro realmente é muito superior que todo o mundo, que imbecíl #ForaBolsonaro #AcabouBolsonaro #Genocida']
+        m = 'Votou no Bolsonaro também assina os óbitos desse energúmeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
 
         else:
-            m =random.choice(frases)
             print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
             #s = api.update_status(m)
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
             m = "@%s %s" % (sn, m,)
             s = api.update_status(m, in_reply_to_status_id = tweet.id)
+
+            #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), tweet.id)
 
     # except Exception as e:
     #     logger.error("Error on fav and retweet", exc_info=True)
