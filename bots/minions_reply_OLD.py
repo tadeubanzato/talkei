@@ -32,7 +32,6 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-api = main()
 # api = tweepy.API(auth, wait_on_rate_limit=True,
 #     wait_on_rate_limit_notify=True)
 
