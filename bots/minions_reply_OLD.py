@@ -50,7 +50,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        m = 'Votou no @bol #Genocida #ForaBolsonaro'  # our status message
+        m = 'Votou no Bolsonaro também assina os óbitos desse energumeno #Bolsonazi #Genocida #ForaBolsonaro'  # our status message
         s = api.update_status(m)
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
