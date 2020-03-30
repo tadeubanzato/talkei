@@ -51,8 +51,8 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-        MensagemMinion = "Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida"
-        user_name = "talkei2019"
+        #MensagemMinion = "Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida"
+        user_name =  "talkei2019"
         tweets = api.user_timeline(screen_name=user_name)
         firt_tweet = tweets[0]
         print(firt_tweet.text)
