@@ -52,7 +52,7 @@ class FavRetweetListener(tweepy.StreamListener):
             return
 
         user_name = "talkei2019"
-            tweets = api.user_timeline(screen_name=user_name)
+            tweet = api.user_timeline(screen_name=user_name)
             firt_tweet = tweets[0]
             print(firt_tweet.text)
             print("done")
