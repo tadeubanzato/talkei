@@ -61,7 +61,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         else:
             print(bcolors.RED + "RESPONDENDO", bcolors.ENDC)
-            s = api.update_status(m)
+            #s = api.update_status(m)
             sn = tweet.user.screen_name
             #tweets = api.user_timeline(screen_name=user_name)
             m = "@%s %s" % (sn, m,)
