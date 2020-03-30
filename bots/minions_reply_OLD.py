@@ -4,6 +4,7 @@
 import tweepy
 import json
 import time
+import logging
 import random
 
 """
@@ -76,11 +77,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
 
 def main(keywords):
-
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
-
     try:
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
