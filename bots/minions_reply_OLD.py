@@ -56,8 +56,8 @@ class FavRetweetListener(tweepy.StreamListener):
             return
 
         else:
-            print(bcolors.RED + "RESPONDENDP", bcolors.ENDC)
-            resposta = 'Esse cara é um loco isso sim #Genocida #ForaBolsonaro'  # our status message
+            print(bcolors.RED + "RESPONDENDO", bcolors.ENDC)
+            resposta = 'Esse cara é um louco isso sim #Genocida #ForaBolsonaro'  # our status message
             s = api.update_status(resposta)
             #tweets = api.user_timeline(screen_name=user_name)
             sn = tweet.user.screen_name
@@ -75,9 +75,6 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
-        # Create API connection
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
@@ -88,7 +85,7 @@ def main(keywords):
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, "\r")
+            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
 
