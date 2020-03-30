@@ -46,17 +46,17 @@ while True:
             # avoiding tweets that are retweets of our user's own tweets.
             # To avoid possible infinite loop
 
-            if tweet.text[0:2] != "RT" and sn != "armRTbot":
+            if tweet.text[0:2] != "RT" and sn != "talkei2019":
                 if tweet.text[twee_len - 1] == condition:
-                    print tweet.text
-                    print status_y
+                    print(bcolors.BLUE + "Message: ",tweet.text, bcolors.ENDC)
+                    print(bcolors.GREEN + "Reply: ",status_y, bcolors.ENDC)
                     api.update_status(status_y, in_reply_to_status_id = tweet.id)
-                    print
+                    
                 else:
-                    print tweet.text
-                    print status_n
+                    print(bcolors.BLUE + "Message: ",tweet.text, bcolors.ENDC)
+                    print(bcolors.GREEN + "Reply: ",status_n, bcolors.ENDC)
                     api.update_status(status_n, in_reply_to_status_id = tweet.id)
-                    print
+
             else:
                 pass
         except tweepy.TweepError as e:
