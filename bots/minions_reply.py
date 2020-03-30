@@ -46,23 +46,19 @@ class FavRetweetListener(tweepy.StreamListener):
     def check_mentions(api, keywords, since_id):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        new_since_id = since_id
-        for tweet in tweepy.Cursor(api.mentions_timeline,
-            since_id=since_id).items():
-            new_since_id = max(tweet.id, new_since_id)
-            if tweet.in_reply_to_status_id is not None:
-                continue
-            if any(keyword in tweet.text.lower() for keyword in keywords):
-                print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
+        if tweet.in_reply_to_status_id is not None \
+            tweet.user.id == self.me.id:
+            # This tweet is a reply or I'm its author so, ignore it
+            continue
+        if any(keywords in tweet.text.lower() for keywords in keywords):
+            print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
 
-                if not tweet.user.following:
-                    tweet.user.follow()
+            api.update_status(
+                status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
+                in_reply_to_status_id=tweet.id,
+            )
 
-                api.update_status(
-                    status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
-                    in_reply_to_status_id=tweet.id,
-                )
-        return new_since_id
+        return
     #
     # def on_status(self, tweet):
     #     print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
