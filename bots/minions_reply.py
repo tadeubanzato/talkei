@@ -51,7 +51,12 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-
+        user_name = "talkei2019"
+            tweets = api.user_timeline(screen_name=user_name)
+            firt_tweet = tweets[0]
+            print(firt_tweet.text)
+            print("done")
+            api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), firt_tweet.id)
 
     # except Exception as e:
     #     logger.error("Error on fav and retweet", exc_info=True)
