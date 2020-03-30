@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
 import tweepy
+import cPickle
 import logging
 import json
 import time
@@ -15,12 +16,6 @@ This script is for listening Twitter timeline and:
 V1.02
 """
 
-# Authenticate to Twitter
-auth = tweepy.OAuthHandler("i0fnpu89sMI8QMnyGKHJkdyYS",
-    "ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv")
-auth.set_access_token("1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk",
-    "9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i")
-
 # Create color code
 class bcolors:
     BLUE = '\033[94m'
@@ -31,58 +26,61 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# Create LOGGER object
-logging.basicConfig(level=logging.CRITICAL)
-logger = logging.getLogger()
 
-class FavRetweetListener(tweepy.StreamListener):
-    def __init__(self, api):
-        self.api = api
-        self.me = api.me()
+#-------------------------------------------------------------------------------
+def login():
+    ''' Takes our credentials and logs into Twitter using OAuth. A Tweepy
+        api object is returned upon success. '''
+    consumer_token = credentials['i0fnpu89sMI8QMnyGKHJkdyYS']
+    consumer_secret = credentials['ruWDxELm9PSAwnbrz6PcxZ7TFaPfQqPeoLn7g2rYuN2PsRisyv']
+    access_token = credentials['1106313860460568576-wVk6Olx2T3dmwMB8A4iDGC7jmzWkhk']
+    access_token_secret = credentials['9iGV5ruDnAw4bcTxf5Slpwu9NqvsugDSqJtHJXGJNTK4i']
 
-    def on_error(self, status):
-        logger.error(status)
-
-    def on_status(self, tweet):
-        print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
-        print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
-            return
-
-        user_name = "talkei2019"
-        tweets = api.user_timeline(screen_name=user_name)
-        firt_tweet = tweets[0]
-        print(firt_tweet.text)
-        print("done")
-        api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), firt_tweet.id)
-
-    # except Exception as e:
-    #     logger.error("Error on fav and retweet", exc_info=True)
-
-    def on_error(self, status):
-        logger.error(status)
-
-
-def main(keywords):
+    api = None
     try:
-        # Create API connection
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
-        tweets_listener = FavRetweetListener(api)
-        stream = tweepy.Stream(api.auth, tweets_listener)
-        stream.filter(track=keywords, languages=["pt"])
-        reply_new_tweets()
+        auth = tweepy.OAuthHandler(consumer_token, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
+        api = tweepy.API(auth)
+    except tweepy.TweepError, e:
+        print e
+    return api
 
-    except tweepy.TweepError:
-        t=(60 * 15)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, "\r")
-            time.sleep(1)
-            t -= 1
 
-if __name__ == "__main__":
-    main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
+#-------------------------------------------------------------------------------
+def shipit(api=None, replytostatus=None):
+    ''' Tweets a status update. '''
+    if api is None:
+        api = login()
+    m = 'Esse cara é um loco isso sim #Genocida #ForaBolsonaro'  # our status message
+    try:
+        if replytostatus is None:
+            s = api.update_status(m)
+        else:
+            # If replying, do some extra formatting of the status message.
+            sn = replytostatus.user.screen_name
+            m = "@%s %s" % (sn, m,)
+            s = api.update_status(m, replytostatus.id)
+    except tweepy.TweepError, e:
+        print e
+
+#-------------------------------------------------------------------------------
+def main():
+    try:
+        listened = cPickle.load(open('listened.pkl','r'))
+    except:
+        listened = []
+
+    # We're going to loop indefinitely, pausing between checks.
+    while True:
+        api = update_following()
+        listen_to_friends(api, listened)
+        cPickle.dump(listened,open('listened.pkl', 'w'))
+        print time.ctime()
+        time.sleep(60)
+
+#-------------------------------------------------------------------------------
+if __name__ == '__main__':
+    main()
+
+# if __name__ == "__main__":
+#     main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
