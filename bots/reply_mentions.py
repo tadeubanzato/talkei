@@ -34,23 +34,20 @@ logger = logging.getLogger()
 
 def check_mentions(api, keywords, since_id):
     print(bcolors.YELLOW + "Retrieving mentions...")
-    new_since_id = since_id
-    for tweet in tweepy.Cursor(api.mentions_timeline,
-        since_id=since_id).items():
-        new_since_id = max(tweet.id, new_since_id)
+
+    for tweet in tweepy.Cursor(api.timeline).items():
+        #new_since_id = max(tweet.id, new_since_id)
+
         if tweet.in_reply_to_status_id is not None:
             continue
-        if any(keyword in tweet.text.lower() for keyword in keywords):
+        if any(keywords in tweet.text.lower()):
             print(bcolors.BLUE + "Respondendo para: " + tweet.user.name)
-
-            if not tweet.user.following:
-                tweet.user.follow()
 
             api.update_status(
                 status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
                 in_reply_to_status_id=tweet.id,
             )
-    return new_since_id
+    return
 
 def on_error(self, status):
     logger.error(status)
@@ -64,7 +61,7 @@ def main():
         since_id = check_mentions(api, ["help", "support"], since_id)
         logger.info("Will continue ine...")
         #time.sleep(60)
-        t=(60)
+        t=(20)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
