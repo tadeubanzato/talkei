@@ -36,6 +36,10 @@ logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
 class FavRetweetListener(tweepy.StreamListener):
+    # Create API connection
+    api = tweepy.API(auth, wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True)
+        
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -51,7 +55,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
 
-        api.update_status(
+        status = api.update_status(
             status="Esse presidente é um bossal, sem mais. #ForaBolsonaro #Bolsonazi #BolsonaroGenocida",
             in_reply_to_status_id=tweet.id,
         )
@@ -63,9 +67,6 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
-        # Create API connection
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
