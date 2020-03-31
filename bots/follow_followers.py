@@ -29,7 +29,6 @@ logger = logging.getLogger()
 
 # FOLLOW FOLLOWERS
 def follow_followers(api):
-    print("Retrieving and following followers")
     print(bcolors.BLUE + "Retrieving and following followers" + bcolors.ENDC)
     for follower in tweepy.Cursor(api.followers).items():
         if not follower.following:
