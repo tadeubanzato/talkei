@@ -1,9 +1,17 @@
-import psutil
-import sys
-from subprocess import Popen
+#!/usr/bin/env python
+"""
+Check to see if an process is running. If not, restart.
+Run this in a cron job
+"""
+import os
+process_name= "fav_retweet.py" # change this to the name of your process
 
-for process in psutil.process_iter():
-    if process.cmdline() == ['python3', 'fav_retweet.py']:
-        sys.exit('Process found: exiting.')
+tmp = os.popen("ps -Af").read()
 
-print('Process not found: starting it.')
+if process_name not in tmp[:]:
+    print "The process is not running. Let's restart."
+    """"Use nohup to make sure it runs like a daemon"""
+    newprocess="nohup python3 %s &" % (process_name)
+    os.system(newprocess)
+else:
+    print "The process is running."
