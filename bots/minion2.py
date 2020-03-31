@@ -58,12 +58,15 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
+        print(tweepy.TweepError)
+
         if not tweepy.TweepError:
             try:
                 print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
                 sn = tweet.user.screen_name
                 m = "@%s %s" % (sn, m,)
                 s = api.update_status(m, in_reply_to_status_id = tweet.id)
+
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
 
