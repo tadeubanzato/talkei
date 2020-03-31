@@ -44,8 +44,8 @@ class FavRetweetListener(tweepy.StreamListener):
         self.api = api
         self.me = api.me()
 
-    def on_error(self, status):
-        logger.error(status)
+    # def on_error(self, status):
+    #     logger.error(status)
 
     def on_status(self, tweet):
         time.sleep(5)
@@ -97,8 +97,6 @@ def main(keywords):
             print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
-        #return None
-        #raise
 
 if __name__ == "__main__":
     main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
