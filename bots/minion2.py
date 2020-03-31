@@ -36,7 +36,7 @@ class bcolors:
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
-# api = tweepy.API(auth)
+api = 0
 
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
