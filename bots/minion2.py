@@ -36,7 +36,7 @@ class bcolors:
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
-api = 0
+api = tweepy.API(auth)
 
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
@@ -47,21 +47,22 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
+
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
+        if tweet.text[0:2] != "RT":
+            lines = open('frases.txt').read().splitlines()
+            m =random.choice(lines)
 
-        lines = open('frases.txt').read().splitlines()
-        m =random.choice(lines)
+            if tweet.in_reply_to_status_id is not None or \
+                tweet.user.id == self.me.id:
+                # This tweet is a reply or I'm its author so, ignore it
+                return
 
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
-            return
-
-        print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
-        sn = tweet.user.screen_name
-        m = "@%s %s" % (sn, m,)
-        s = api.update_status(m, in_reply_to_status_id = tweet.id)
+            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
+            sn = tweet.user.screen_name
+            m = "@%s %s" % (sn, m,)
+            s = api.update_status(m, in_reply_to_status_id = tweet.id)
 
     def on_error(self, status):
         logger.error(status)
