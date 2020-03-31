@@ -52,18 +52,20 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
 
         lines = open('frases.txt').read().splitlines()
-        m =random.choice(lines)
+        m = random.choice(lines)
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-            
-        if tweet.text[0:2] != "RT":
-            print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
-            sn = tweet.user.screen_name
-            m = "@%s %s" % (sn, m,)
-            s = api.update_status(m, in_reply_to_status_id = tweet.id)
+        if not tweepy.TweepError:
+            try:
+                print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
+                sn = tweet.user.screen_name
+                m = "@%s %s" % (sn, m,)
+                s = api.update_status(m, in_reply_to_status_id = tweet.id)
+            except Exception as e:
+                logger.error("Error on fav", exc_info=True)
 
     def on_error(self, status):
         logger.error(status)
@@ -88,4 +90,4 @@ def main(keywords):
             t -= 1
 
 if __name__ == "__main__":
-    main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente"])
+    main(["#BolsonaroTemRazao", "#EstadoDeDefesa", "#ReajaPresidente"])
