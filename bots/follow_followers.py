@@ -37,12 +37,10 @@ def follow_followers(api):
             follower.follow()
 
 def main():
-    # Create API object
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
-
-    #api = create_api()
     while True:
+        # Create API Module
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
         follow_followers(api)
         print("Waiting...")
         time.sleep(60)
