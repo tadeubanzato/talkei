@@ -3,7 +3,6 @@
 # bots/followfollowers.py
 import json
 import tweepy
-import logging
 import os
 import time
 
@@ -22,10 +21,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-# Create LOGGER object
-logging.basicConfig(level=logging.CRITICAL)
-logger = logging.getLogger()
 
 # FOLLOW FOLLOWERS
 def follow_followers(api):
