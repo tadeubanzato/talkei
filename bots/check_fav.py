@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+import os
+
 """
 Check to see if an process is running. If not, restart.
 Run this in a cron job

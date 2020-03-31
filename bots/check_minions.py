@@ -1,10 +1,19 @@
-import psutil
-import sys
-from subprocess import Popen
+#!/usr/bin/env python3
+import os
 
-for process in psutil.process_iter():
-    if process.cmdline() == ['python3', 'minions_reply_OLD.py']:
-        sys.exit('Process found: exiting.')
+"""
+Check to see if an process is running. If not, restart.
+Run this in a cron job
+"""
+import os
+process_name= "minion2.py" # change this to the name of your process
 
-print('Process not found: starting it.')
-Popen(['python3', 'minions_reply_OLD.py'])
+tmp = os.popen("ps -Af").read()
+
+if process_name not in tmp[:]:
+    print "The process is not running. Let's restart."
+    """"Use nohup to make sure it runs like a daemon"""
+    newprocess="nohup python3 %s &" % (process_name)
+    os.system(newprocess)
+else:
+    print "The process is running."
