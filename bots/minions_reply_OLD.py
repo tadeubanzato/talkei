@@ -87,7 +87,7 @@ def main(keywords):
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
-        #reply_new_tweets()
+        reply_new_tweets()
 
     except tweepy.TweepError:
         t=(60 * 15)
