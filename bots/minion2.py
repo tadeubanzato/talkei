@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # bots/fav_retweet.py
 import tweepy
+import logging
 import json
 import time
-import logging
 import random
 
 """
@@ -32,26 +32,21 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-api = tweepy.API(auth, wait_on_rate_limit=True,
-    wait_on_rate_limit_notify=True)
-
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
+
+api = tweepy.API(auth)
 
 class FavRetweetListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         self.me = api.me()
 
-    # def on_error(self, status):
-    #     logger.error(status)
+    def on_error(self, status):
+        logger.error(status)
 
     def on_status(self, tweet):
-        time.sleep(5)
-        # api = tweepy.API(auth, wait_on_rate_limit=True,
-        #     wait_on_rate_limit_notify=True)
-
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         lines = open('frases.txt').read().splitlines()
@@ -69,32 +64,27 @@ class FavRetweetListener(tweepy.StreamListener):
         m = "@%s %s" % (sn, m,)
         s = api.update_status(m, in_reply_to_status_id = tweet.id)
 
-    #api.update_status('@{} Esse cara é uma piada #Genocida #ForaBolsonaro'.format(user_name), tweet.id)
-
-    # except Exception as e:
-    #     logger.error("Error on fav and retweet", exc_info=True)
-
-    # def on_error(self, status):
-    #     logger.error(status)
+    def on_error(self, status):
+        logger.error(status)
 
 
 def main(keywords):
     try:
+        # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["pt"])
-        reply_new_tweets()
 
     except tweepy.TweepError:
         t=(60 * 15)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
+            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, "\r")
             time.sleep(1)
             t -= 1
 
 if __name__ == "__main__":
-    main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente", "O povo está com você", "Só orgulho Presidente"])
+    main(["esquerdopata", "#BolsonaroTemRazao", "#EstadoDeDefesa", "esquerdopatia", "#ReajaPresidente"])
