@@ -50,15 +50,16 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
+
+        lines = open('frases.txt').read().splitlines()
+        m =random.choice(lines)
+
+        if tweet.in_reply_to_status_id is not None or \
+            tweet.user.id == self.me.id:
+            # This tweet is a reply or I'm its author so, ignore it
+            return
+            
         if tweet.text[0:2] != "RT":
-            lines = open('frases.txt').read().splitlines()
-            m =random.choice(lines)
-
-            if tweet.in_reply_to_status_id is not None or \
-                tweet.user.id == self.me.id:
-                # This tweet is a reply or I'm its author so, ignore it
-                return
-
             print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
             sn = tweet.user.screen_name
             m = "@%s %s" % (sn, m,)
@@ -78,7 +79,7 @@ def main(keywords):
         stream.filter(track=keywords, languages=["pt"])
 
     except tweepy.TweepError:
-        t=(60 * 15)
+        t=(1)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
