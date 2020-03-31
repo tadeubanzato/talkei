@@ -58,7 +58,7 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-        print(tweepy.TweepError)
+        #print(tweepy.TweepError)
 
         if tweepy.TweepError:
             try:
