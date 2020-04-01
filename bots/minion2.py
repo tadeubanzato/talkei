@@ -59,8 +59,8 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
         #print(tweepy.TweepError)
-
-        if tweet.text [0:2] is "RT" or not tweet.retweet or tweepy.TweepError:
+        print(tweet.text [0:2])
+        if tweet.retweet or tweepy.TweepError:
             try:
                 print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
                 sn = tweet.user.screen_name
