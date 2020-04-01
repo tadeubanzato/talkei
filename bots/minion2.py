@@ -50,7 +50,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-
+        print(tweet.text[0:2])
         lines = open('frases.txt').read().splitlines()
         m = random.choice(lines)
 
@@ -59,7 +59,7 @@ class FavRetweetListener(tweepy.StreamListener):
             # This tweet is a reply or I'm its author so, ignore it
             return
         #print(tweepy.TweepError)
-        print(tweet.text [0:2])
+
         if not tweet.retweet or tweepy.TweepError:
             try:
                 print(bcolors.RED + "RESPONDENDO: ",m,bcolors.ENDC)
