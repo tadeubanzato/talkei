@@ -99,4 +99,4 @@ def main(keywords):
             t -= 1
 
 if __name__ == "__main__":
-    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente", "biroliro", "bolsonaro imbecil"])
+    main(["#ForaBolsonaro", "#BolsonaroGenocida", "#BolsoNazi", "#Bolsonaroacabou", "#BolsonaroNaoEmaisPresidente", "biroliro", "bolsonaro imbecil", "governo de merda", "Bolsonado idiota", "BolsonaroDay", ])
