@@ -32,6 +32,8 @@ class bcolors:
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
+api = tweepy.API(auth)
+
 def check_mentions(api, keywords, since_id):
     print(bcolors.YELLOW + "Retrieving mentions...")
 
