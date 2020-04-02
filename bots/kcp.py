@@ -44,11 +44,11 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
+        print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         file1 = open("bozo.txt","w")
         L = (tweet.user.name + ":",tweet.text)
-        #file1.write("Hello \n")
+        file1.write("Hello \n")
         file1.writelines(L)
         file1.writelines("\n")
         file1.close() #to change file access modes
