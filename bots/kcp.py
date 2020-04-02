@@ -87,14 +87,14 @@ def main(keywords):
             wait_on_rate_limit_notify=True)
         tweets_listener = FavRetweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
-        stream.filter(track=keywords, languages=["pt"])
+        stream.filter(track=keywords, languages=["en"])
 
     except tweepy.TweepError:
         t=(60 * 15)
         while t:
             mins, secs = divmod(t, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, "\r")
+            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
             time.sleep(1)
             t -= 1
 
