@@ -97,4 +97,4 @@ def main(keywords):
             t -= 1
 
 if __name__ == "__main__":
-    main(["#ForaBolsonaro", "Kimberly Clark","kimberly-clark" ])
+    main(["Bolsonaro", "Kimberly Clark","kimberly-clark" ])
