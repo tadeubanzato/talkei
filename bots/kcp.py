@@ -49,7 +49,7 @@ class FavRetweetListener(tweepy.StreamListener):
         file1 = open("bozo.txt","w")
         L = (tweet.user.name + ":",tweet.text,"\n")
         #file1.write("Hello \n")
-        file1.writelines(L)
+        file1.write(L)
         file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
