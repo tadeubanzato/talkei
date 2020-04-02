@@ -56,29 +56,6 @@ class FavRetweetListener(tweepy.StreamListener):
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
             return
-        # if not tweet.favorited or tweepy.TweepError:
-        #     # Mark it as Liked, since we have not done it yet
-        #     try:
-        #         #tweet.favorite()
-        #     except Exception as e:
-        #         logger.error("Error on fav", exc_info=True)
-        #
-        #     except tweepy.TweepError:
-        #         t=(60 * 15)
-        #         while t:
-        #             mins, secs = divmod(t, 60)
-        #             timer = '{:02d}:{:02d}'.format(mins, secs)
-        #             print(bcolors.RED + "Restart API Tweep rest 1 in:" + bcolors.ENDC, timer, "\r")
-        #             time.sleep(1)
-        #             t -= 1
-
-        # if not tweet.retweeted:
-        #     # Retweet, since we have not retweeted it yet
-        #     try:
-        #         tweet.retweet()
-        #         if not tweet.user.following:
-        #             print(bcolors.YELLOW + "Following user: " + bcolors.ENDC,tweet.user.name)
-
 
     def on_error(self, status):
         logger.error(status)
