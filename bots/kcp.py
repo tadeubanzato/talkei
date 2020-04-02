@@ -46,6 +46,11 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
+        file1 = open("bozo.txt","w")
+        L = (tweet.text,"\n")
+        #file1.write("Hello \n") 
+        file1.writelines(L)
+        file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it
