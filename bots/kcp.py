@@ -48,7 +48,7 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         file1 = open("bozo.txt","a")
         L = (tweet.user.name + ":",tweet.text)
-        file1.write("Hello \n")
+        file1.writelines("Hello \n")
         file1.writelines(L)
         file1.writelines("\n")
         file1.close() #to change file access modes
