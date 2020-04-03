@@ -54,7 +54,7 @@ class FavRetweetListener(tweepy.StreamListener):
         file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
+            # This tweet is a reply or I'm its author so, ignore it porque vc nao ta atualizando?
             return
 
     def on_error(self, status):
