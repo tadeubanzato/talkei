@@ -46,12 +46,12 @@ class TweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
-        # file1 = open("~/talkei/bozo.txt","a+")
-        # L = (tweet.user.name + ":",tweet.text)
-        # file1.writelines("Hello \n")
-        # file1.writelines(L)
-        # file1.writelines("\n")
-        # file1.close() #to change file access modes
+        file1 = open("~/talkei/bozo.txt","a+")
+        L = (tweet.user.name + ":",tweet.text)
+        file1.writelines("Hello \n")
+        file1.writelines(L)
+        file1.writelines("\n")
+        file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it porque vc nao ta atualizando?
