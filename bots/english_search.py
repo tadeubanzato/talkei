@@ -5,6 +5,7 @@ import tweepy
 import logging
 import json
 import time
+import os
 
 """
 This script is for listening Twitter timeline and:
