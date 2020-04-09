@@ -52,7 +52,6 @@ class TweetListener(tweepy.StreamListener):
         file1.writelines("\n\n")
         file1.writelines(EngTwt)
         file1.writelines("\n")
-        file1.writelines(count)
         file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
