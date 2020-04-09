@@ -48,10 +48,12 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
         file1 = open("/home/pi/talkei/bozo.txt","a+")
-        L = (tweet.user.name + ":",tweet.text)
-        file1.writelines("Hello \n")
-        file1.writelines(L)
+        EngTwt = (tweet.user.name + ": ",tweet.text)
+        file1.writelines("\n\n")
+        file1.writelines(EngTwt)
         file1.writelines("\n")
+        count = count + 1
+        file1.writelines(count)
         file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
