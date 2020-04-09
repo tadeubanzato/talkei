@@ -35,7 +35,7 @@ class bcolors:
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
 
-class FavRetweetListener(tweepy.StreamListener):
+class TweetListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         self.me = api.me()
@@ -46,12 +46,12 @@ class FavRetweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
-        file1 = open("~/talkei/bozo.txt","a+")
-        L = (tweet.user.name + ":",tweet.text)
-        file1.writelines("Hello \n")
-        file1.writelines(L)
-        file1.writelines("\n")
-        file1.close() #to change file access modes
+        # file1 = open("~/talkei/bozo.txt","a+")
+        # L = (tweet.user.name + ":",tweet.text)
+        # file1.writelines("Hello \n")
+        # file1.writelines(L)
+        # file1.writelines("\n")
+        # file1.close() #to change file access modes
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
             # This tweet is a reply or I'm its author so, ignore it porque vc nao ta atualizando?
@@ -66,7 +66,7 @@ def main(keywords):
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
-        tweets_listener = FavRetweetListener(api)
+        tweets_listener = TweetListener(api)
         stream = tweepy.Stream(api.auth, tweets_listener)
         stream.filter(track=keywords, languages=["en"])
 
@@ -80,4 +80,4 @@ def main(keywords):
             t -= 1
 
 if __name__ == "__main__":
-    main(["Bolsonaro", "Kimberly Clark","kimberly-clark" ])
+    main(["Bolsonaro" ])
