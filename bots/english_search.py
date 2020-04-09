@@ -45,7 +45,7 @@ class TweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
-        print(bcolors.BLUE.BOLD + "Message: ", tweet.text, bcolors.ENDC)
+        print(bcolors.BLUE.BOLD + "Message: ", tweet.text, bcolors.ENDC,"\n")
         # file1 = open("~/talkei/bozo.txt","a+")
         # L = (tweet.user.name + ":",tweet.text)
         # file1.writelines("Hello \n")
