@@ -51,9 +51,10 @@ class TweetListener(tweepy.StreamListener):
 
         check = tweet.text
         if check[:2] == "RT":
+            flagNew = "Retweet"
             print("RT")
         else:
-            #flagNew = "Retweet"
+            flagNew = "NEW TWEET"
             print("NEW")
 
         minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text], 'New Tweet':flagNew})
