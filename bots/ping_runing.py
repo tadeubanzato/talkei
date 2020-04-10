@@ -15,7 +15,7 @@ report["value1"] = "Starting script: "
 # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # s.connect(("8.8.8.8", 80))
 #s.close()
-print sys.argv[1]
+print (sys.argv[1])
 runing = sys.argv[1]
 report["value2"] = runing
 
