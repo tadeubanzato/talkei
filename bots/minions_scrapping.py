@@ -49,9 +49,21 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
 
-        minions = ['Tweet ID':tweet.id,'User Name':tweet.user.screen_name,'User URL':tweet.user.url,'Friends Count':tweet.user.friends_count,'Followers Count':tweet.user.followers_count,'Timezone':tweet.user.time_zone,'Created at':tweet.user.created_at,'Location':tweet.user.location,'Tweet':tweet.text]
+        minions = {['Tweet ID':tweet.id,'User Name':tweet.user.screen_name,'User URL':tweet.user.url,'Friends Count':tweet.user.friends_count,'Followers Count':tweet.user.followers_count,'Timezone':tweet.user.time_zone,'Created at':tweet.user.created_at,'Location':tweet.user.location,'Tweet':tweet.text]}
         df = DataFrame(minions, columns=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet'])
         df.to_csv ('/home/pi/talkei/minions_log.csv', index=false, header=True) # here you have to write path, where result file will be stored
+
+
+# from pandas import DataFrame
+# C = {['Python','Java', 'C++'],
+#         'Designed by': ['Guido van Rossum', 'James Gosling', 'Bjarne Stroustrup'],
+#         'Appeared': ['1991', '1995', '1985'],
+#         'Extension': ['.py', '.java', '.cpp'],
+#     }
+# df = DataFrame(C, columns= ['Programming language', 'Designed by', 'Appeared', 'Extension'])
+# export_csv = df.to_csv (r'X:\pandaresult.csv', index = None, header=True) # here you have to write path, where result file will be stored
+# print (df)
+
 
 
         # # Write a new roll with the information on the CSV file
