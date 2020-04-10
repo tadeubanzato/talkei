@@ -10,7 +10,7 @@ else
   if [ $timeDay -ge 12 -a $timeDay -le 18 ]; then
     sudo pkill -f fav_retweet.py
     export L="fav_retweet"
-    exec python ping_runing.py "$L"
+    exec python3 ping_runing.py "$L"
     nohup python3 /home/pi/talkei/bots/minions.py  &
   fi
 fi
