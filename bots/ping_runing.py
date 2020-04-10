@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # bots/ping_runing.py
 import requests
+import os
+import sys
 
 ## IFTTT and Webhook alet
 # Array for the values on Webhook ["value1"], ["value2"], etc
@@ -14,7 +16,9 @@ report["value1"] = "Starting script: "
 # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # s.connect(("8.8.8.8", 80))
 #s.close()
-report["value2"] = L
+print os.getenv('L')
+runing = os.getenv('L')
+report["value2"] = runing
 
 # Resquest post to Webhook integrated with IFTTT
 requests.post('https://maker.ifttt.com/trigger/Talkei/with/key/d1oS5w-uq90y8fCs2ot5qG', data=report)
