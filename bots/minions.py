@@ -51,14 +51,6 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Processing tweet id:" + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
 
-        # # Write a new roll with the information on the CSV file
-        # with open('/home/pi/talkei/minions_log.csv', mode='w') as csv_file:
-        #     fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet']
-        #     minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
-        #
-        #     minions.writeheader()
-        #     minions.writerows({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Created at':tweet.user.created_at, 'Location':tweet.user.location, 'Tweet':tweet.text})
-
         # Open file with phrases to choose mentions
         lines = open('/home/pi/talkei/bots/frases.txt').read().splitlines()
         m = random.choice(lines)

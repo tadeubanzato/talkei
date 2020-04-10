@@ -65,13 +65,13 @@ class TweetListener(tweepy.StreamListener):
         df.to_csv('/home/pi/talkei/minions_log.csv', encoding='utf-8', index=true)
 
 
-
-        # file1 = open("/home/pi/talkei/bozo.txt","a+")
-        # EngTwt = (tweet.user.name + ": ",tweet.text)
-        # file1.writelines("\n\n")
-        # file1.writelines(EngTwt)
-        # file1.writelines("\n")
-        # file1.close() #to change file access modes
+        # # Write a new roll with the information on the CSV file
+        # with open('/home/pi/talkei/minions_log.csv', mode='w') as csv_file:
+        #     fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet']
+        #     minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
+        #
+        #     minions.writeheader()
+        #     minions.writerows({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Created at':tweet.user.created_at, 'Location':tweet.user.location, 'Tweet':tweet.text})
 
 
         if tweet.in_reply_to_status_id is not None or \
