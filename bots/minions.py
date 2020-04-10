@@ -6,6 +6,7 @@ import logging
 import json
 import time
 import random
+import csv
 
 """
 This script is for listening Twitter timeline and:
@@ -32,6 +33,9 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+# Define CSV file
+minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
+
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
@@ -48,8 +52,12 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id:" + bcolors.ENDC, tweet.id)
-        print(tweet.urls)
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
+
+        # Write a new roll with the information on the CSV file
+        minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text, tweet.text.url])
+
+        # Open file with phrases to choose mentions
         lines = open('frases.txt').read().splitlines()
         m = random.choice(lines)
 
