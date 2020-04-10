@@ -52,19 +52,7 @@ class TweetListener(tweepy.StreamListener):
         minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':[tweet.user.url],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text]})
         #,tweet.user.time_zone,tweet.user.created_at,tweet.user.location,tweet.text]
         df = DataFrame(minions)
-        df.to_csv ('/home/pi/talkei/minions_log.csv', index=False, header=True, mode='a') # here you have to write path, where result file will be stored
-
-
-# from pandas import DataFrame
-# C = {['Python','Java', 'C++'],
-#         'Designed by': ['Guido van Rossum', 'James Gosling', 'Bjarne Stroustrup'],
-#         'Appeared': ['1991', '1995', '1985'],
-#         'Extension': ['.py', '.java', '.cpp'],
-#     }
-# df = DataFrame(C, columns= ['Programming language', 'Designed by', 'Appeared', 'Extension'])
-# export_csv = df.to_csv (r'X:\pandaresult.csv', index = None, header=True) # here you have to write path, where result file will be stored
-# print (df)
-
+        df.to_csv ('/home/pi/talkei/minions_log.csv', index=False, header=False, mode='a') # here you have to write path, where result file will be stored
 
 
         # # Write a new roll with the information on the CSV file
