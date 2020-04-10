@@ -48,7 +48,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id:" + bcolors.ENDC, tweet.id)
-        print(tweet.url)
+        print(tweet.urls)
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
         lines = open('frases.txt').read().splitlines()
         m = random.choice(lines)
