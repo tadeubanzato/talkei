@@ -32,7 +32,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-    
+
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
@@ -53,7 +53,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
         # Write a new roll with the information on the CSV file
         with open('/home/pi/talkei/minions_log.csv', mode='w') as file:
-            minions = csv.DictWriter(file, fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Location', 'Last Message'])
+            #minions = csv.DictWriter(file, fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Location', 'Last Message'])
             minions.writeheader()
             minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text])
         # minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
