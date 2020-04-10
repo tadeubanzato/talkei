@@ -48,8 +48,8 @@ class TweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
-        check = tweet.text[:2]
-        print(check)
+        check = tweet.text
+        print(check[:2])
         # if check[:2] is not "RT"
         #     flagNew = "NEW TWEET"
         #     return
