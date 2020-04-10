@@ -6,14 +6,14 @@ timeDay=$(date +"%H")
 if [ $timeDay -ge 5 -a $timeDay -le 12 ]; then
   sudo pkill -f minions.py
   export L="FavRetweet"
-  exec python3 ping_runing.py "$L"
-  python3 fav_retweet.py
+  python3 ping_runing.py "$L" &
+  python3 fav_retweet.py &
 else
   if [ $timeDay -ge 12 -a $timeDay -le 18 ]; then
     sudo pkill -f fav_retweet.py
     export L="Minions"
-    exec python3 ping_runing.py "$L"
-    python3 minions.py
+    python3 ping_runing.py "$L" &
+    python3 minions.py &
   fi
 fi
 
