@@ -51,17 +51,7 @@ class TweetListener(tweepy.StreamListener):
 
         minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://www.twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text]})
         df = DataFrame(minions)
-        df.to_csv ('/home/pi/talkei/minions_log.csv', encoding='utf-8', index=False, header=False, mode='a') # here you have to write path, where result file will be stored
-
-
-        # # Write a new roll with the information on the CSV file
-        # with open('/home/pi/talkei/minions_log.csv', mode='w') as csv_file:
-        #     fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet']
-        #     minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
-        #
-        #     minions.writeheader()
-        #     minions.writerows({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Created at':tweet.user.created_at, 'Location':tweet.user.location, 'Tweet':tweet.text})
-
+        df.to_csv ('/home/pi/talkei/minions_log.csv', columns = ['Tweet ID', 'User Name', 'User URL', 'Friend Counts', 'Followers', 'Created', 'Location','Tweet'], encoding='utf-8', index=False, header=False, mode='a') # here you have to write path, where result file will be stored
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
