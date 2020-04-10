@@ -16,7 +16,7 @@ report["value1"] = "Starting script: "
 # s.connect(("8.8.8.8", 80))
 #s.close()
 print (sys.argv[1])
-runing = sys.argv[1]
+runing = str(sys.argv[1])
 report["value2"] = runing
 
 # Resquest post to Webhook integrated with IFTTT
