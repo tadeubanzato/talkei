@@ -32,11 +32,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-# Open and define CSV file
-with open('/home/pi/talkei/minions_log.csv', mode='w', newline='') as file:
-
-
+    
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
 logger = logging.getLogger()
