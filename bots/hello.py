@@ -38,13 +38,14 @@ fillrows = len(sheet.get_all_values()) # Get total number of rolls with data add
 x = randint(1, fillrows)
 
 def main():
-    time.sleep(15)
+
+    # Start API connector
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
-
     talkeiMessage = sheet.cell(x,1).value
-    print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
-
+    #print(bcolors.GREEN + "Message that will be twitted: " + bcolors.ENDC,talkeiMessage)
+    # Wait 2 minutes before posting
+    time.sleep(60 * 2)
     status = api.update_status(status=talkeiMessage)
 
     # Webhook will send the tweet message to IFTTT
