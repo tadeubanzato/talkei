@@ -6,7 +6,7 @@ import logging
 import json
 import time
 import os
-import csv
+from pandas import DataFrame
 
 """
 This script is for listening Twitter timeline and:
@@ -49,14 +49,30 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
 
+        minions = {[tweet.id,tweet.user.screen_name,tweet.user.url,tweet.user.friends_count,tweet.user.followers_count,tweet.user.time_zone,tweet.user.created_at,tweet.user.location,tweet.text]}
+        df = DataFrame(minions, columns=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet'])
+        df.to_csv ('/home/pi/talkei/minions_log.csv', index=None, header=True) # here you have to write path, where result file will be stored
 
-        # Write a new roll with the information on the CSV file
-        with open('/home/pi/talkei/minions_log.csv', mode='w') as csv_file:
-            fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet']
-            minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-            minions.writeheader()
-            minions.writerows({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Created at':tweet.user.created_at, 'Location':tweet.user.location, 'Tweet':tweet.text})
+# from pandas import DataFrame
+# C = {['Python','Java', 'C++'],
+#         'Designed by': ['Guido van Rossum', 'James Gosling', 'Bjarne Stroustrup'],
+#         'Appeared': ['1991', '1995', '1985'],
+#         'Extension': ['.py', '.java', '.cpp'],
+#     }
+# df = DataFrame(C, columns= ['Programming language', 'Designed by', 'Appeared', 'Extension'])
+# export_csv = df.to_csv (r'X:\pandaresult.csv', index = None, header=True) # here you have to write path, where result file will be stored
+# print (df)
+
+
+
+        # # Write a new roll with the information on the CSV file
+        # with open('/home/pi/talkei/minions_log.csv', mode='w') as csv_file:
+        #     fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet']
+        #     minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
+        #
+        #     minions.writeheader()
+        #     minions.writerows({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Created at':tweet.user.created_at, 'Location':tweet.user.location, 'Tweet':tweet.text})
 
 
         if tweet.in_reply_to_status_id is not None or \
