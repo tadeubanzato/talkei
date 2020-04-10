@@ -49,7 +49,7 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
 
-        minions = {[tweet.id,tweet.user.screen_name,tweet.user.url,tweet.user.friends_count,tweet.user.followers_count,tweet.user.time_zone,tweet.user.created_at,tweet.user.location,tweet.text]}
+        minions =[tweet.id,tweet.user.screen_name,tweet.user.url,tweet.user.friends_count,tweet.user.followers_count,tweet.user.time_zone,tweet.user.created_at,tweet.user.location,tweet.text]
         df = DataFrame(minions, columns=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet'])
         df.to_csv ('/home/pi/talkei/minions_log.csv', index=None, header=True) # here you have to write path, where result file will be stored
 
