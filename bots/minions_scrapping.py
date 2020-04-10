@@ -52,7 +52,7 @@ class TweetListener(tweepy.StreamListener):
         minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':[tweet.user.url],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text]})
         #,tweet.user.time_zone,tweet.user.created_at,tweet.user.location,tweet.text]
         df = DataFrame(minions)
-        df.to_csv ('/home/pi/talkei/minions_log.csv', sep='\n', index=False, header=True, mode='a') # here you have to write path, where result file will be stored
+        df.to_csv ('/home/pi/talkei/minions_log.csv', sep='\t', index=False, header=True, mode='a') # here you have to write path, where result file will be stored
 
 
 # from pandas import DataFrame
