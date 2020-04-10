@@ -20,3 +20,8 @@ Commit Changes
 `sudo git commit -am "Changes"`
 
 git push origin master
+
+Other Commands
+`nohup python myscript.py &`
+`sudo rm -rf diName/*`
+`ls -a`
