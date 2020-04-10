@@ -48,8 +48,7 @@ class TweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
-        twtUserLink = 'https://twitter.com/' + str(tweet.user.id)
-        twtLink =  twtUserLink + '/status/' + tweet.user.screen_name
+        twtLink =  'https://twitter.com/' + tweet.user.name + '/status/' + str(tweet.id)
         print(twtLink)
         check = tweet.text
         if check[:2] == "RT":
@@ -58,7 +57,7 @@ class TweetListener(tweepy.StreamListener):
             flagNew = "NEW TWEET"
 
         #minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
-        minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':twtUserLink,'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
+        minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':'https://twitter.com/' + tweet.user.name,'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
         df = DataFrame(minions)
         df.to_csv ('/home/pi/talkei/minions_log.csv', encoding='utf-8', index=False, header=None, mode='a') # here you have to write path, where result file will be stored
         #columns=['Tweet ID', 'User Name', 'User URL', 'Friend Counts', 'Followers', 'Created', 'Location','Tweet','Tweet Link','New Tweet'],
