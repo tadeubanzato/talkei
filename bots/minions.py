@@ -55,7 +55,7 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
 
         # Write a new roll with the information on the CSV file
-        minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text, tweet.text.url])
+        minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text, tweet.id.url])
 
         # Open file with phrases to choose mentions
         lines = open('frases.txt').read().splitlines()
