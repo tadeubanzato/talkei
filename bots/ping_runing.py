@@ -16,8 +16,8 @@ report["value1"] = "Starting script: "
 # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # s.connect(("8.8.8.8", 80))
 #s.close()
-print os.getenv('L')
-runing = os.getenv('L')
+print getenv('L')
+runing = getenv('L')
 report["value2"] = runing
 
 # Resquest post to Webhook integrated with IFTTT
