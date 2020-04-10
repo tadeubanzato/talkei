@@ -44,13 +44,6 @@ class FavRetweetListener(tweepy.StreamListener):
         logger.error(status)
 
     def on_status(self, tweet):
-        t=(60 * 1)
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(bcolors.RED + "Restart API back in:" + bcolors.ENDC, timer, end="\r")
-            time.sleep(1)
-            t -= 1
         print(bcolors.GREEN + "Processing tweet id: " + bcolors.ENDC, tweet.id)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         if tweet.in_reply_to_status_id is not None or \
@@ -89,6 +82,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
+        time.sleep(5)
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
