@@ -14,59 +14,70 @@ else
     export L="Minions"
     #python3 ping_runing.py "$L" &
     python3 minions.py &
-else
-  if [ $timeDay -ge 9 -a $timeDay -le 11 ]; then
-    sudo pkill -f minions.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 fav_retweet.py &
-else
-  if [ $timeDay -ge 11 -a $timeDay -le 13 ]; then
-    sudo pkill -f fav_retweet.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 minions.py &
-else
-  if [ $timeDay -ge 13 -a $timeDay -le 15 ]; then
-    sudo pkill -f minions.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 fav_retweet.py &
-else
-  if [ $timeDay -ge 15 -a $timeDay -le 17 ]; then
-    sudo pkill -f fav_retweet.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 minions.py &
-else
-  if [ $timeDay -ge 17 -a $timeDay -le 19 ]; then
-    sudo pkill -f minions.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 fav_retweet.py &
-else
-  if [ $timeDay -ge 19 -a $timeDay -le 20 ]; then
-    sudo pkill -f fav_retweet.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 minions.py &
-else
-  if [ $timeDay -ge 21 -a $timeDay -le 22 ]; then
-    sudo pkill -f minions.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 fav_retweet.py &
-else
-  if [ $timeDay -ge 22 -a $timeDay -le 23 ]; then
-    sudo pkill -f fav_retweet.py
-    export L="FavRetweet"
-    #python3 ping_runing.py "$L" &
-    python3 minions.py &
-else
-  if [ $timeDay -ge 23 -a $timeDay -le 5 ]; then
-    sudo pkill -f fav_retweet.py
-    sudo pkill -f minions.py
+  else
+    if [ $timeDay -ge 9 -a $timeDay -le 11 ]; then
+      sudo pkill -f minions.py
+      export L="FavRetweet"
+      #python3 ping_runing.py "$L" &
+      python3 fav_retweet.py &
+    else
+      if [ $timeDay -ge 11 -a $timeDay -le 13 ]; then
+        sudo pkill -f fav_retweet.py
+        export L="FavRetweet"
+        #python3 ping_runing.py "$L" &
+        python3 minions.py &
+      else
+        if [ $timeDay -ge 13 -a $timeDay -le 15 ]; then
+          sudo pkill -f minions.py
+          export L="FavRetweet"
+          #python3 ping_runing.py "$L" &
+          python3 fav_retweet.py &
+        else
+          if [ $timeDay -ge 15 -a $timeDay -le 17 ]; then
+            sudo pkill -f fav_retweet.py
+            export L="FavRetweet"
+            #python3 ping_runing.py "$L" &
+            python3 minions.py &
+          else
+            if [ $timeDay -ge 17 -a $timeDay -le 19 ]; then
+              sudo pkill -f minions.py
+              export L="FavRetweet"
+              #python3 ping_runing.py "$L" &
+              python3 fav_retweet.py &
+            else
+              if [ $timeDay -ge 19 -a $timeDay -le 20 ]; then
+                sudo pkill -f fav_retweet.py
+                export L="FavRetweet"
+                #python3 ping_runing.py "$L" &
+                python3 minions.py &
+              else
+                if [ $timeDay -ge 21 -a $timeDay -le 22 ]; then
+                  sudo pkill -f minions.py
+                  export L="FavRetweet"
+                  #python3 ping_runing.py "$L" &
+                  python3 fav_retweet.py &
+                else
+                  if [ $timeDay -ge 22 -a $timeDay -le 23 ]; then
+                    sudo pkill -f fav_retweet.py
+                    export L="FavRetweet"
+                    #python3 ping_runing.py "$L" &
+                    python3 minions.py &
+                  else
+                    if [ $timeDay -ge 23 -a $timeDay -le 5 ]; then
+                      sudo pkill -f fav_retweet.py
+                      sudo pkill -f minions.py
+                    fi
+                  fi
+                fi
+              fi
+            fi
+          fi
+        fi
+      fi
+    fi
   fi
+fi
+
 
 
 # if [ $weekDay -eq 6 -o $weekDay -eq 7 ]; then
