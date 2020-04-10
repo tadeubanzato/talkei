@@ -56,7 +56,7 @@ class FavRetweetListener(tweepy.StreamListener):
             fieldnames=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Location', 'Last Message']
             minions=csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-            writer.writeheader()
+            minions.writeheader()
             minions.writerow({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Location':tweet.user.created_at, 'Last Message':tweet.text})
         # minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
         # minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text])
