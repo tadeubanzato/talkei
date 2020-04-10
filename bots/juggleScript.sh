@@ -32,10 +32,10 @@ fi
 # fi
 
 
-#-eq # equal
-#-ne # not equal
-#-lt # less than
-#-le # less than or equal
-#-gt # greater than
-#-ge # greater than or equal
-#ps command: ps aux | grep file named
+# -eq # equal
+# -ne # not equal
+# -lt # less than
+# -le # less than or equal
+# -gt # greater than
+# -ge # greater than or equal
+# ps command: ps aux | grep file named
