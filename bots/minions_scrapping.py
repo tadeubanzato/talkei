@@ -49,10 +49,9 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
 
-        #minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://www.twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text]})
-        minions = (tweet.id,tweet.user.screen_name,'https://www.twitter.com/'+tweet.user.screen_name)
+        minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://www.twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text]})
         df = DataFrame(minions)
-        df.to_csv ('/home/pi/talkei/minions_log.csv', columns = ['Tweet ID', 'User Name', 'User URL', 'Friend Counts', 'Followers', 'Created', 'Location','Tweet'], encoding='utf-8', index=False, header=True, mode='a') # here you have to write path, where result file will be stored
+        df.to_csv ('/home/pi/talkei/minions_log.csv', columns=['Tweet ID', 'User Name', 'User URL', 'Friend Counts', 'Followers', 'Created', 'Location','Tweet'], encoding='utf-8', index=False, header=None, mode='a') # here you have to write path, where result file will be stored
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
