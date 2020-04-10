@@ -7,13 +7,13 @@ if [ $timeDay -ge 5 -a $timeDay -le 12 ]; then
   sudo pkill -f minions.py
   export L="FavRetweet"
   exec python3 ping_runing.py "$L"
-  python3 /home/pi/talkei/bots/fav_retweet.py  &
+  exec python3 /home/pi/talkei/bots/fav_retweet.py
 else
   if [ $timeDay -ge 12 -a $timeDay -le 18 ]; then
     sudo pkill -f fav_retweet.py
     export L="Minions"
     exec python3 ping_runing.py "$L"
-    python3 /home/pi/talkei/bots/minions.py  &
+    exec python3 /home/pi/talkei/bots/minions.py
   fi
 fi
 
