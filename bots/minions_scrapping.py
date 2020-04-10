@@ -48,7 +48,7 @@ class TweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
-        twtLink =  'https://twitter.com/' + tweet.user.name + '/status/' + str(tweet.id)
+        twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
         print(twtLink)
         check = tweet.text
         if check[:2] == "RT":
