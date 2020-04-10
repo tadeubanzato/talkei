@@ -58,11 +58,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
             minions.writeheader()
             minions.writerow({'Tweet ID':tweet.id, 'User Name':tweet.user.screen_name, 'User URL':tweet.user.url, 'Friends Count':tweet.user.friends_count, 'Followers Count':tweet.user.followers_count, 'Timezone':tweet.user.time_zone, 'Location':tweet.user.created_at, 'Last Message':tweet.text})
-        # minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
-        # minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text])
 
         # Open file with phrases to choose mentions
-        lines = open('frases.txt').read().splitlines()
+        lines = open('/home/pi/talkei/bots/frases.txt').read().splitlines()
         m = random.choice(lines)
 
         if tweet.in_reply_to_status_id is not None or \
