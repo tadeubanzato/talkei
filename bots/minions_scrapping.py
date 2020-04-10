@@ -48,10 +48,14 @@ class TweetListener(tweepy.StreamListener):
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
-        check = tweet.text
 
+        check = tweet.text
         if check[:2] is not "RT":
             flagNew = "NEW TWEET"
+            print(flagNew)
+        else:
+            flagNew = "Retweet"
+            print(flagNew)
 
         minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text], 'New Tweet':flagNew})
         df = DataFrame(minions)
@@ -73,7 +77,6 @@ class TweetListener(tweepy.StreamListener):
 def main(keywords):
     try:
         # Create API connection
-        flagNew = "Retweet"
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
         tweets_listener = TweetListener(api)
