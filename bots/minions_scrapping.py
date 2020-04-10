@@ -49,7 +49,7 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
         check = tweet.text[:2]
-        pint(check)
+        print(check)
         # if check[:2] is not "RT"
         #     flagNew = "NEW TWEET"
         #     return
