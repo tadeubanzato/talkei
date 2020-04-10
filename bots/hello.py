@@ -38,7 +38,7 @@ fillrows = len(sheet.get_all_values()) # Get total number of rolls with data add
 x = randint(1, fillrows)
 
 def main():
-
+    time.sleep(15)
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
