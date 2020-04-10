@@ -49,7 +49,7 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
         check = tweet.text
-        print(check[:2])
+
         if check[:2] is not "RT":
             flagNew = "NEW TWEET"
 
@@ -73,6 +73,7 @@ class TweetListener(tweepy.StreamListener):
 def main(keywords):
     try:
         # Create API connection
+        flagNew = "Retweet"
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
         tweets_listener = TweetListener(api)
