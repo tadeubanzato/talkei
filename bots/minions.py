@@ -48,6 +48,7 @@ class FavRetweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print(bcolors.GREEN + "Processing tweet id:" + bcolors.ENDC, tweet.id)
+        print(tweet.url)
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
         lines = open('frases.txt').read().splitlines()
         m = random.choice(lines)
@@ -76,7 +77,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
+        # Wait 5 seconds avoid URL connetion breaking
         time.sleep(5)
+
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)

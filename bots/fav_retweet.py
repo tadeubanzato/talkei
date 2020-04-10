@@ -82,7 +82,9 @@ class FavRetweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
+        # Wait 5 seconds avoid URL connetion breaking
         time.sleep(5)
+
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
