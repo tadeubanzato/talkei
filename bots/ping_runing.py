@@ -1,5 +1,4 @@
 import requests
-import socket
 
 ## IFTTT and Webhook alet
 # Array for the values on Webhook ["value1"], ["value2"], etc
