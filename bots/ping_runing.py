@@ -1,3 +1,6 @@
+#!/usr/bin/en python3
+# -*- coding: utf-8 -*-
+# bots/ping_runing.py
 import requests
 
 ## IFTTT and Webhook alet
