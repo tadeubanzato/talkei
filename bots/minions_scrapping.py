@@ -9,12 +9,11 @@ import os
 from pandas import DataFrame
 
 """
-This script is for listening Twitter timeline and:
-1. Favorsite all twits with the comments based on the search keywords
-2. Retweet any twits with the search keywords criteria
-3. Follow any users with that twitted with the search criteria
+This script scapes twitter data and store key information of the users based on the criterias.
+In thi case, the script search for keywords, identify users, use pandas to create a data structure
+and save user information in a CSV file.
 
-V1.02
+V1.1
 """
 
 # Authenticate to Twitter
@@ -47,9 +46,16 @@ class TweetListener(tweepy.StreamListener):
 
     def on_status(self, tweet):
         print(bcolors.GREEN + "Tweet from: " + bcolors.ENDC, tweet.user.name)
-        print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC,"\n")
+        print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
-        print(twtLink)
+        print(twtLink,"\n")
+
+        if tweet.in_reply_to_status_id is not None or \
+            tweet.user.id == self.me.id:
+            # This tweet is a reply or I'm its author so, ignore it porque vc nao ta atualizando?
+            return
+
+        # Flag if new tweet or RT
         check = tweet.text
         if check[:2] == "RT":
             flagNew = "RT"
@@ -57,18 +63,18 @@ class TweetListener(tweepy.StreamListener):
             flagNew = "NEW TWEET"
 
         #minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
-        minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':'https://twitter.com/' + tweet.user.name,'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
+        minions =({'Tweet ID':[tweet.id],
+                'User Name':[tweet.user.screen_name],
+                'User URL':'https://twitter.com/' + tweet.user.screen_name,
+                'Friend Counts':[tweet.user.friends_count],
+                'Followers':[tweet.user.followers_count],
+                'Created':[tweet.user.created_at],
+                'Location':[tweet.user.location],
+                'Tweet':[tweet.text],
+                'Tweet Link':twtLink,
+                'New Tweet':flagNew})
         df = DataFrame(minions)
         df.to_csv ('/home/pi/talkei/minions_log.csv', encoding='utf-8', index=False, header=None, mode='a') # here you have to write path, where result file will be stored
-        #columns=['Tweet ID', 'User Name', 'User URL', 'Friend Counts', 'Followers', 'Created', 'Location','Tweet','Tweet Link','New Tweet'],
-        if tweet.in_reply_to_status_id is not None or \
-            tweet.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it porque vc nao ta atualizando?
-            return
-
-        # check = tweet.text
-        # if check[:2] is not 'RT' or tweet.in_reply_to_status_id is not None
-        #     #print(check[:2])
 
     def on_error(self, status):
         logger.error(status)

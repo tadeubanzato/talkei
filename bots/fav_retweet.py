@@ -12,7 +12,7 @@ This script is for listening Twitter timeline and:
 2. Retweet any twits with the search keywords criteria
 3. Follow any users with that twitted with the search criteria
 
-V1.02
+V1.04
 """
 
 # Authenticate to Twitter
