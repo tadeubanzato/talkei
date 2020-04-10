@@ -32,9 +32,9 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+# Open and define CSV file
+#with open('/home/pi/talkei/minions_log.csv', 'w', newline='') as file:
 
-# Define CSV file
-minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
 
 # Create LOGGER object
 logging.basicConfig(level=logging.CRITICAL)
@@ -55,6 +55,7 @@ class FavRetweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message:", tweet.text, bcolors.ENDC)
 
         # Write a new roll with the information on the CSV file
+        minions = csv.writer(open("/home/pi/talkei/minions_log.csv", "wb"))
         minions.writerow([tweet.id, tweet.user.screen_name, tweet.user.url, tweet.user.friends_count, tweet.user.followers_count, tweet.user.time_zone, tweet.user.created_at, tweet.text])
 
         # Open file with phrases to choose mentions
