@@ -60,7 +60,7 @@ class TweetListener(tweepy.StreamListener):
                     'Tweet':tweet.text,
                     }
         df = DataFrame(minions, columns=['Tweet ID', 'User Name','User URL','Friends Count','Followers Count','Timezone', 'Created at', 'Location', 'Tweet'])
-        df.to_csv (r'/home/pi/talkei/minions_log.csv', index = None, header=True) # here you have to write path, where result file will be stored
+        df.to_csv ('/home/pi/talkei/minions_log.csv', index=false, header=True) # here you have to write path, where result file will be stored
 
 
         # # Write a new roll with the information on the CSV file
