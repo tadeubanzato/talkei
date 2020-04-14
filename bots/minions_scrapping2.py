@@ -84,7 +84,6 @@ class TweetListener(tweepy.StreamListener):
         # Write data on Google Sheets
         row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,flagNew,userLink,twtLink]
         print (row)
-        row = ["roll1","roll2","roll3"]
         index += 1
         sheet.insert_row(row, index)
 
