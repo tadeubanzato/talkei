@@ -64,7 +64,7 @@ class TweetListener(tweepy.StreamListener):
         print(twtLink,"\n")
         print(tweet.coordinates)
         # print(tweet.user.geo_enabled) - True or False Value
-        print(tweet.user.location)
+        # print(tweet.user.location)
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
@@ -82,10 +82,10 @@ class TweetListener(tweepy.StreamListener):
         userLink = 'https://twitter.com/' + tweet.user.screen_name
         CreatedDate = str(tweet.user.created_at)
         # Write data on Google Sheets
-        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,flagNew,userLink,twtLink]
-        print (row)
+        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,tweet.coordinates,tweet.text,flagNew,twtLink,userLink,tweet.user.description,tweet.retweet_count]
         index += 1
         sheet.insert_row(row, index)
+        time.sleep(5)
 
     def on_error(self, status):
         logger.error(status)
