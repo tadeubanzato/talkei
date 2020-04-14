@@ -37,11 +37,11 @@ class bcolors:
 
 # Connecting to Google Sheets
 print(bcolors.BLUE + "Connecting to Google Sheet" + bcolors.ENDC)
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
-client = gspread.authorize(creds)
-sheet = client.open('MinionsCount').sheet1 # discover total rows on sheet
-index = len(sheet.get_all_values())
+# scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+# creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
+# client = gspread.authorize(creds)
+# sheet = client.open('MinionsCount').sheet1 # discover total rows on sheet
+# index = len(sheet.get_all_values())
 
 
 # Create LOGGER object
@@ -83,9 +83,8 @@ class TweetListener(tweepy.StreamListener):
         CreatedDate = str(tweet.user.created_at)
         # Write data on Google Sheets
         row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,tweet.coordinates,tweet.text,flagNew,twtLink,userLink,tweet.user.description,tweet.retweet_count]
-        index += 1
+        index = 1
         sheet.insert_row(row, index)
-        time.sleep(8)
 
     def on_error(self, status):
         logger.error(status)
@@ -94,6 +93,10 @@ class TweetListener(tweepy.StreamListener):
 def main(keywords):
     try:
         time.sleep(5)
+        scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+        creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
+        client = gspread.authorize(creds)
+        sheet = client.open('MinionsCount').sheet1 # discover total rows on sheet
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
