@@ -93,6 +93,7 @@ class TweetListener(tweepy.StreamListener):
 
 def main(keywords):
     try:
+        time.sleep(5)
         # Create API connection
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
@@ -111,4 +112,4 @@ def main(keywords):
 
 if __name__ == "__main__":
     # Define keywords comma separated
-    main(["#BolsonaroTemRazao", "esquerdopato", "#EstadoDeDefesa", "#ReajaPresidente", "presidente estamos com você", "força presidente", "seja forte bolsonaro", "Você não está sozinho capitão"])
+    main(["#BolsonaroTemRazao", "esquerdopata", "#EstadoDeDefesa", "#ReajaPresidente", "presidente estamos com você", "força presidente", "seja forte bolsonaro", "Você não está sozinho capitão"])
