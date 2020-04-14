@@ -11,7 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import random
 from random import *
 import requests
-from pandas import DataFrame
+
 """
 This script scrapes twitter data and store key information of the users based on the criterias.
 In thi case, the script search for keywords, identify users, use pandas to create a data structure
@@ -36,13 +36,13 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# Connecting to google Sheets
+# Connecting to Google Sheets
 print(bcolors.BLUE + "Connecting to Google Sheet" + bcolors.ENDC)
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
-sheet = client.open('Talkei_Messages').sheet1
-fillrows = len(sheet.get_all_values())
+sheet = client.open('MinionsCounts').sheet1 # discover total rows on sheet
+index = len(sheet.get_all_values())
 
 
 # Create LOGGER object
@@ -75,23 +75,10 @@ class TweetListener(tweepy.StreamListener):
         else:
             flagNew = "NEW TWEET"
 
-        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,tweet.user.coordinates,"with",'https://twitter.com/' + tweet.user.screen_name]
-        index = 1
+        # Write data on Google Sheets
+        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,tweet.user.coordinates,flagNew,'https://twitter.com/' + tweet.user.screen_name,twtLink]
+        index = index + 1
         sheet.insert_row(row, index)
-
-        #minions =({'Tweet ID':[tweet.id],'User Name':[tweet.user.screen_name],'User URL':['https://twitter.com/'+tweet.user.screen_name],'Friend Counts':[tweet.user.friends_count],'Followers':[tweet.user.followers_count],'Created':[tweet.user.created_at],'Location':[tweet.user.location],'Tweet':[tweet.text],'Tweet Link':twtLink,'New Tweet':flagNew})
-        minions =({'Tweet ID':[tweet.id],
-                'User Name':[tweet.user.screen_name],
-                'User URL':'https://twitter.com/' + tweet.user.screen_name,
-                'Friend Counts':[tweet.user.friends_count],
-                'Followers':[tweet.user.followers_count],
-                'Created':[tweet.user.created_at],
-                'Location':[tweet.user.location],
-                'Tweet':[tweet.text],
-                'Tweet Link':twtLink,
-                'New Tweet':flagNew})
-        df = DataFrame(minions)
-        df.to_csv ('/home/pi/talkei/minions_log.csv', encoding='utf-8', index=False, header=None, mode='a') # here you have to write path, where result file will be stored
 
     def on_error(self, status):
         logger.error(status)
