@@ -9,7 +9,6 @@ import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import random
-from random import *
 import requests
 
 """
@@ -42,7 +41,7 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/talkei/bots/talkei-0c766b314509.json', scope)
 client = gspread.authorize(creds)
 sheet = client.open('MinionsCount').sheet1 # discover total rows on sheet
-
+print(client.open('MinionsCount').sheet1)
 
 
 # Create LOGGER object
@@ -64,7 +63,7 @@ class TweetListener(tweepy.StreamListener):
         twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
         print(twtLink,"\n")
         print(tweet.coordinates)
-        print(tweet.user.geo_enabled)
+        # print(tweet.user.geo_enabled) - True or False Value
         print(tweet.user.location)
 
         if tweet.in_reply_to_status_id is not None or \
