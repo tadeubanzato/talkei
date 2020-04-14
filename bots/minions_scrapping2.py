@@ -62,6 +62,7 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
         print(twtLink,"\n")
+        print(tweet.status.coordinates)
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
