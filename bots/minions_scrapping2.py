@@ -80,7 +80,7 @@ class TweetListener(tweepy.StreamListener):
 
         print(bcolors.RED + "Writing data to Sheets" + bcolors.ENDC)
         userLink = 'https://twitter.com/' + tweet.user.screen_name
-        CreatedDate = tweet.user.created_at
+        CreatedDate = str(tweet.user.created_at)
         # Write data on Google Sheets
         row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,flagNew,userLink,twtLink]
         print (row)
