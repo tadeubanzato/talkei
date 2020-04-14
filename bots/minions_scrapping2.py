@@ -63,7 +63,7 @@ class TweetListener(tweepy.StreamListener):
         print(bcolors.BLUE + "Message: ", tweet.text, bcolors.ENDC)
         twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
         print(twtLink,"\n")
-        print(tweet.coordinates)
+        # print(tweet.coordinates)
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
@@ -79,9 +79,9 @@ class TweetListener(tweepy.StreamListener):
 
         print(bcolors.RED + "Writing data to Sheets" + bcolors.ENDC)
         # Write data on Google Sheets
-        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,flagNew,'https://twitter.com/' + tweet.user.screen_name,twtLink]
-        index = index + 1
-        sheet.insert_row(row, index)
+        # row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,flagNew,'https://twitter.com/' + tweet.user.screen_name,twtLink]
+        # index = index + 1
+        # sheet.insert_row(row, index)
 
     def on_error(self, status):
         logger.error(status)
