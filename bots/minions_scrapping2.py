@@ -83,7 +83,7 @@ class TweetListener(tweepy.StreamListener):
         CreatedDate = str(tweet.user.created_at)
         # Write data on Google Sheets
         row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,tweet.coordinates,tweet.text,flagNew,twtLink,userLink,tweet.user.description,tweet.retweet_count]
-        index = 1
+        index += 1
         sheet.insert_row(row, index)
 
     def on_error(self, status):
