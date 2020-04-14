@@ -85,7 +85,7 @@ class TweetListener(tweepy.StreamListener):
         row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,CreatedDate,tweet.user.location,tweet.coordinates,tweet.text,flagNew,twtLink,userLink,tweet.user.description,tweet.retweet_count]
         index += 1
         sheet.insert_row(row, index)
-        time.sleep(5)
+        time.sleep(8)
 
     def on_error(self, status):
         logger.error(status)
