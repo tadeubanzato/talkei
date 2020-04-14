@@ -75,8 +75,9 @@ class TweetListener(tweepy.StreamListener):
         else:
             flagNew = "NEW TWEET"
 
+        print(bcolors.RED + "Writing data to Sheets" + bcolors.ENDC)
         # Write data on Google Sheets
-        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,tweet.user.coordinates,flagNew,'https://twitter.com/' + tweet.user.screen_name,twtLink]
+        row = [tweet.user.screen_name,tweet.user.friends_count,tweet.user.followers_count,tweet.user.created_at,tweet.user.location,tweet.status.coordinates,flagNew,'https://twitter.com/' + tweet.user.screen_name,twtLink]
         index = index + 1
         sheet.insert_row(row, index)
 
