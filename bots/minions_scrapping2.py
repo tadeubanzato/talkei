@@ -64,6 +64,7 @@ class TweetListener(tweepy.StreamListener):
         twtLink =  'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)
         print(twtLink,"\n")
         print(tweet.coordinates)
+        print(tweet.geo_enabled)
 
         if tweet.in_reply_to_status_id is not None or \
             tweet.user.id == self.me.id:
