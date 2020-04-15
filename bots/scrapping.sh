@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CHECK='ps -aux | minions_scrapping2.py  | grep -v grep | wc -l'
+CHECK='ps aux | grep minions_scrapping2.py | grep -v grep | wc -l'
 
 if $CHECK -eq 0
   then
