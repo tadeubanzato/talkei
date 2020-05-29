@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # git pull origin master
+
 import json
 import tweepy
 import logging
@@ -80,6 +80,3 @@ class MyStreamListener(tweepy.StreamListener):
 tweets_listener = MyStreamListener(api)
 stream = tweepy.Stream(api.auth, tweets_listener)
 stream.filter(track=["Bolsonazi", "biroliro", "bolsonaro imbecil", "#BolsonaroGenocida", "#Bolsonaroacabou", "#ForaBolsonaro", "#BolsonaroNaoEmaisPresidente"], languages=["pt"])
-
-
-#this is commited with Code
